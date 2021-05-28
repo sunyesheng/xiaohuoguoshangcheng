@@ -10,7 +10,7 @@ const template = require('art-template');
 //session模块
 const session = require('express-session');
 
-//处理路径拼接 
+//处理路径拼接 问题
 const path = require('path');
 
 //处理post请求 引入body-parser模块
