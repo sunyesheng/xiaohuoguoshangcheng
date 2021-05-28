@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火锅商城</title>
+    <link rel="shortcut icon" href="/shopping/img/huoguo.ico">
+    <link rel="stylesheet" href="/shopping/css/初始化.css">
+    <link rel="stylesheet" href="/shopping/css/index.css">
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+    </header>
+    <!-- /header -->
+
+    <!-- menu -->
+    <menu>
+        <ul>
+            <a href="javascript:;" id="ayue">
+                <li>
+                    <img src="/shopping/img/注重汤底的鲜香.png" />
+                    <img src="/shopping/img/1b992e7b468e90159b0b97b6820aab75.png" alt="粤式火锅" />
+                    <img src="/shopping/img/点此购买1.png" />
+                </li>
+            </a>
+            <a href="javascript:;" id="achuan">
+                <li>
+                    <img src="/shopping/img/以麻辣、鲜香著称.png" />
+                    <img src="/shopping/img/1b992e7b468e90159b0b97b6820aab75.png" alt="川式火锅" />
+                    <img src="/shopping/img/点此购买2.png" />
+                </li>
+            </a>
+            <a href="javascript:;" id="ahan">
+                <li>
+                    <img src="/shopping/img/大杂烩，泡菜加火腿.png" />
+                    <img src="/shopping/img/1b992e7b468e90159b0b97b6820aab75.png" alt="东北火锅" />
+                    <img src="/shopping/img/点此购买4.png" />
+                </li>
+            </a>
+            <a href="javascript:;" id="adong">
+                <li>
+                    <img src="/shopping/img/具有鲜香，满族特色.png" />
+                    <img src="/shopping/img/1b992e7b468e90159b0b97b6820aab75.png" alt="韩式火锅" />
+                    <img src="/shopping/img/点此购买1.png" />
+                </li>
+            </a>
+        </ul>
+    </menu>
+    <!-- /menu -->
+
+    <!-- main -->
+    <div class="main">
+        <!-- yueStyle -->
+        <div class="yue clearfix" id="yue">
+            <div class="left"></div>
+            <div class="right">
+                <img src="/shopping/img/粤式火锅.png" alt="粤式火锅">
+            </div>
+            <ul>
+                <li><img src="/shopping/img/光鸡.jpg"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <!-- /yueStyle -->
+
+        <!-- chuanStyle -->
+        <div class="chuan" id="chuan">
+            <div class="left"></div>
+            <div class="right">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <div class="lajiao">
+                    <img src="/shopping/img/f2156851aecd5c559967611f8d241888.png">
+                </div>
+            </div>
+        </div>
+        <!-- /chuanStyle -->
+
+        <!-- hanStyle -->
+        <div class="han" id="han">
+            <div class="top"><img src="/shopping/img/12d8e547b73ad314d9d5268c4ed417b6.png" alt="韩式火锅"></div>
+            <div class="bottom">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li><img src="/shopping/img/敬请期待.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- /hanStyle -->
+        <!-- dongbeiStyle -->
+        <div class="dong" id="dong">
+            <div class="top">
+                <div class="left">
+
+                </div>
+                <div class="right">
+                    <img src="/shopping/img/东北火锅.png" alt="东北火锅">
+                </div>
+            </div>
+            <div class="bottom">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /dongbeiStyle -->
+
+    </div>
+    <!-- /main -->
+
+    <!-- js -->
+    <script src="/shopping/js/jquery.js"></script>
+    <script src="/shopping/js/index.js"></script>
+    <!-- /js -->
+</body>
+
+</html>

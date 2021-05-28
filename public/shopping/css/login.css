@@ -1,0 +1,216 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background:url(../img/001.png) repeat;
+}
+input, button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+.container {
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 900px;
+    height: 550px;
+    margin: -300px 0 0 -450px;
+    background: rgb(236, 227, 227);
+}
+.form {
+    position: relative;
+    width: 640px;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+    padding: 50px 30px 0;
+}
+.reg {
+    overflow: hidden;
+    position: absolute;
+    left: 640px;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    padding-left: 260px;
+    background: #fff;
+    transition: transform 0.6s ease-in-out;
+}
+.container.s--signup .reg {
+    transform: translate3d(-640px, 0, 0);
+}
+button {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+.img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 360px;
+}
+.img:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url(../img/huo.jpg);
+    background-size: cover;
+    transition: transform 0.6s ease-in-out;
+}
+.img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+.container.s--signup .img:before {
+    transform: translate3d(640px, 0, 0);
+}
+.img_text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.6s ease-in-out;
+}
+.img_text h2 {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+.img_text p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.container.s--signup .img_text.m--up {
+    transform: translateX(520px);
+}
+.img_text.m--in {
+    transform: translateX(-520px);
+}
+.container.s--signup .img_text.m--in {
+    transform: translateX(0);
+}
+.img_btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: 36px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+}
+.img_btn:after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+}
+.img_btn span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+}
+.img_btn span.m--in {
+    transform: translateY(-72px);
+}
+.container.s--signup .img_btn span.m--in {
+    transform: translateY(0);
+}
+.container.s--signup .img_btn span.m--up {
+    transform: translateY(72px);
+}
+h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+}
+label {
+    display: block;
+    width: 260px;
+    margin: 25px auto 0;
+    text-align: center;
+}
+label span {
+    font-size: 12px;
+    color: #909399;
+    text-transform: uppercase;
+}
+input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+.forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #cfcfcf;
+}
+.forgot-pass a {
+    color: #909399;
+}
+.submit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #d4af7a;
+    text-transform: uppercase;
+}
+.sign-in {
+    transition-timing-function: ease-out;
+}
+.container.s--signup .sign-in {
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.6s;
+    transform: translate3d(640px, 0, 0);
+}
+.sign-up {
+    transform: translate3d(-900px, 0, 0);
+}
+.container.s--signup .sign-up {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}

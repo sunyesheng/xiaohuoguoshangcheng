@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品分类</title>
+    <link rel="stylesheet" href="/shopping/css/cart.css">
+</head>
+
+<body>
+    <section class="content">
+        <div class="left">
+            <ul id="left">
+                <li class="td">
+                    <ul>
+                        <li>
+                            <input type="text" placeholder="搜索">
+                        </li>
+                        <li id="tuijian">推荐</li>
+                        <li id="diliao">火锅底料</li>
+                        <li id="sucai">素菜</li>
+                        <li id="huncai">荤菜</li>
+                        <li id="zhushi">主食</li>
+                        <li id="dingdan">我的订单</li>
+                    </ul>
+                </li>
+                <div class="imimt">
+                    <li>名称：</li>
+                </div>
+                <div id="zongjine">总金额：</div>
+                <!-- payforit -->
+                <button id="paygoods">确认支付</button>
+                <!-- /payforit -->
+            </ul>
+        </div>
+        <!-- right -->
+        <div class="right">
+            <ul>
+                <!-- goods -->
+                <li id="goodsinfos">
+                    <div class="hd img-box">
+                        <img src="/shopping/img/麻辣锅.bmp" alt="">
+                    </div>
+                    <div class="td">
+                        <div>
+                            <h3>麻辣锅</h3>
+                        </div>
+                        <div>
+                            <span style="color: red;font-size: 16px;">38.00元</span>
+                            <div>
+                                <button class="white-btn" style="width: 100px;" id="delcartbtn">删除</button>
+                                <button class="white-btn" style="width: 100px;" id="incartbtn">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="xiangqingjieshao">商品详情：这是老八秘制小汉堡</div>
+                </li>
+                <!-- /goods -->
+            </ul>
+        </div>
+        <!-- /right -->
+    </section>
+    <script src="/shopping/js/jquery.js"></script>
+    <script src="/shopping/js/cart.js"></script>
+    <script>
+        $(function () {
+            // PicScroll
+            new PicScroll('.img-box', { speedUp: 800, speedDown: 500 })
+        });
+    </script>
+</body>
+
+</html>

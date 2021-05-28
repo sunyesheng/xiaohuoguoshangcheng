@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理界面</title>
+    <script src="/admin/js/jquery.js"></script>
+    <link rel="stylesheet" href="/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+
+</head>
+
+<body>
+    <!-- nav -->
+    <ul class="nav nav-pills navi">
+        <li role="presentation" id="goodsM"><a href="#">商品管理</a></li>
+        <li role="presentation" id="billM"><a href="#">订单管理</a></li>
+        <li role="presentation" id="userM"><a href="#">用户管理</a></li>
+        <li role="presentation" id="addM"><a href="#">新增商品</a></li>
+    </ul>
+    <!-- /nav -->
+
+    <!-- main -->
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+
+            <!-- goods -->
+            <table class="table table-hover" id="goods">
+                <thead>
+                    <tr>
+                        <th>商品名称</th>
+                        <th>销量</th>
+                        <th>库存</th>
+                        <th>价格</th>
+                        <th>修改</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>辣椒</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                    </tr>
+                    <tr>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                        <td>火锅底料</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /goods -->
+
+            <!-- bill -->
+            <table class="table table-hover" id="bill">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>商品</th>
+                        <th>下单时间</th>
+                        <th>总金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /bill -->
+
+            <!-- user -->
+            <table class="table table-hover" id="user">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>注册时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /user -->
+
+            <!-- addgood -->
+            <form action="" method="POST" class="form-horizontal" role="form" id="addgood">
+                <div class="form-group">
+                    <legend>商品分类</legend>
+                    <select name="" id="">
+                        <option value="">火锅底料</option>
+                        <option value="">素菜</option>
+                        <option value="">荤菜</option>
+                        <option value="">海鲜</option>
+                        <option value="">主食</option>
+                    </select>
+                    <legend>名称</input></legend><input type="text">
+                    <legend>商品图片</legend><input type="file">
+                    <legend>库存</legend><input type="text">
+                    <legend>价格</legend><input type="text">
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /addgood -->
+
+
+            <!-- pages -->
+            <ul class="pager">
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">下一页</a></li>
+            </ul>
+            <!-- /pages -->
+        </div>
+    </div>
+    <!-- /main -->
+    <script src="/admin/js/admin.js"></script>
+</body>
+
+</html>

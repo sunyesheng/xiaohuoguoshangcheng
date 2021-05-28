@@ -1,0 +1,163 @@
+header {
+    width: 100%;
+    height: 600px;
+    background: url(../img/组1.png) no-repeat center;
+    margin-bottom: 70px;
+}
+menu {
+    width: 100%;
+    height: 420px;
+    margin: 0 auto;
+    margin-bottom: 27px;
+}
+menu ul {
+    height: 100%;
+    text-align: center;
+}
+menu ul li {
+    width: 245px;
+    height: 100%;
+    margin: 0 5px;
+    display: inline-block;
+    background:url(../img/矩形2.png) no-repeat center;
+    overflow:visible;
+}
+menu ul li img {
+    margin: 15px 0;
+}
+menu ul li:hover {
+    background: url(../img/矩形1.png) no-repeat center;
+}
+
+.main .yue {
+    width: 1920px;
+    height: 910px;
+ 
+    margin-bottom: 40px;
+    text-align: center;
+}
+.main .yue .left {
+    float: left;
+    width: 1015px;
+    background-color: #f4f1ec;
+    height: 552px;
+    background:url(../img/粤式火锅1.png) no-repeat center;
+    background-size: cover;
+}
+.main .yue .right {
+    float: left;
+    width: 905px;
+    background-color: #f4f1ec;
+    height: 552px;
+    box-sizing: border-box;
+    text-align: left;
+    padding-top: 75px;
+    padding-left: 120px;
+}
+.main .yue ul {
+    width: 1920px;
+    height: 356px;
+}
+.main .yue ul li {
+    display: inline-block;
+    width: 346px;
+    height: 356px;
+}
+
+
+.main .chuan {
+    width: 1920px;
+    height: 555px;
+    margin-bottom: 40px;
+}
+.main .chuan .left {
+    float: left;
+    width: 820px;
+    height: 555px;
+    background: url(../img/川蜀.png) no-repeat center;
+}
+.main .chuan .right ul{
+    float: left;
+    width: 610px;
+    height: 555px;
+}
+.main .chuan .right ul li {
+    width: 610px;
+    height: 182px;
+}
+.main .chuan .right .lajiao {
+    text-align: center;
+    line-height: 555px;
+}
+
+.main .han {
+    width: 1920px;
+    height: 1352px;
+    margin-bottom: 40px;
+}
+.main .han .top {
+    width: 1920px;
+    height: 745px;
+    text-align: center;
+}
+.main .han .bottom {
+    text-align: center;
+}
+.main .han .bottom ul {
+    margin: 0 auto;
+    width: 800px;
+    height: 600px;
+}
+.main .han .bottom ul li {
+    display: inline-block;
+    width: 350px;
+    height: 300px;
+}
+.main .dong {
+    width: 1920px;
+    height: 990px;
+}
+.main .dong .top {
+    width: 1920px;
+    height: 550px;
+    background-color: #f4f1ec;
+}
+.main .dong .top .left {
+    float: left;
+    width: 1020px;
+    height: 550px;
+    background:url(../img/东北火锅1.png)  no-repeat center;
+    background-size: 100% 100%;
+    
+}
+.main .dong .top .right {
+    float: left;
+    height: 550px;
+    width: 900px;
+}
+.main .dong .top .right img {
+    margin-top: 80px;
+    margin-left: 120px;
+}
+.main .dong .bottom {
+    padding-top: 40px;
+    text-align: center;
+}
+.main .dong .bottom ul li {
+    display: inline-block;
+    width: 356px;
+    height: 380px;
+}
+.main li {
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.main li img {
+    width: 100%;
+    height: 100%;
+}
+.main li:hover {
+    cursor: pointer;
+    border-bottom: 3px solid black;
+}

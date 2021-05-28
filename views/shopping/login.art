@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="/shopping/css/login.css">
+    <script src="/shopping/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form sign-in">
+            <form action="" method="POST">
+                <h2>欢迎回来</h2>
+                <label>
+                    <span>邮箱</span>
+                    <input type="email" />
+                </label>
+                <label>
+                    <span>密码</span>
+                    <input type="password" />
+                </label>
+                <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
+                <button type="button" class="submit" id="login">登 录</button>
+            </form>
+        </div>
+        <div class="reg">
+            <div class="img">
+                <div class="img_text m--up">
+                    <h2>还未注册？</h2>
+                    <p>立即注册！</p>
+                </div>
+                <div class="img_text m--in">
+                    <h2>已有帐号？</h2>
+                    <p>登录吧！</p>
+                </div>
+                <div class="img_btn">
+                    <span class="m--up">注 册</span>
+                    <span class="m--in">登 录</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <form action="" method="POST">
+                    <h2>立即注册</h2>
+                    <label>
+                        <span>用户名</span>
+                        <input type="text" />
+                    </label>
+                    <label>
+                        <span>邮箱</span>
+                        <input type="email" />
+                    </label>
+                    <label>
+                        <span>密码</span>
+                        <input type="password" />
+                    </label>
+                    <label>
+                        <span>地址</span>
+                        <input type="adress" />
+                    </label>
+                    <button type="submit" class="submit">注 册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/shopping/js/login.js"></script>
+</body>
+
+</html>
