@@ -5,7 +5,8 @@
 }
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    background:url(../img/001.png) repeat;
+    background:url(../img/001.png) no-repeat;
+    background-size: 100%;
 }
 input, button {
     border: none;
