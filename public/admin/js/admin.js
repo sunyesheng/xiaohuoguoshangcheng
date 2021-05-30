@@ -46,3 +46,15 @@ $('#addM').on('click', function () {
     $('#addgood').show();
     $(this).addClass('active');
 });
+
+//阻止表单的默认提交行为
+$('#addgood').on('submit', () => {
+    alert('ss')
+    return false;
+});
+
+//获取表单中的数据
+$('#btngood').on('click', () => {
+    var s = serializeToJson($('#addgood'));
+    console.log(s);
+})

@@ -13,18 +13,20 @@
 <body>
     <div class="container">
         <div class="form sign-in">
-            <form action="" method="POST">
+            <form action="" method="post" id="loginform">
                 <h2>欢迎回来</h2>
                 <label>
                     <span>邮箱</span>
-                    <input type="email" />
+                    <input type="email" name="email" autocomplete="off"/>
                 </label>
                 <label>
                     <span>密码</span>
-                    <input type="password" />
+                    <input type="password" name="password" autocomplete="off"/>
                 </label>
-                <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
-                <button type="button" class="submit" id="login">登 录</button>
+                <label>
+                    <span id="wrongep"></span>
+                </label>
+                <button type="submit" class="submit" id="loginbtn">登 录</button>
             </form>
         </div>
         <div class="reg">
@@ -43,30 +45,35 @@
                 </div>
             </div>
             <div class="form sign-up">
-                <form action="" method="POST">
+                <form action="/zhuce" method="POST" id="zhuceform">
                     <h2>立即注册</h2>
+
                     <label>
                         <span>用户名</span>
-                        <input type="text" />
+                        <input type="text" name="name" autocomplete="off"/>
                     </label>
                     <label>
                         <span>邮箱</span>
-                        <input type="email" />
+                        <input type="email" name="email" autocomplete="off"/>
                     </label>
                     <label>
                         <span>密码</span>
-                        <input type="password" />
+                        <input type="password" name="password" autocomplete="off"/>
                     </label>
                     <label>
                         <span>地址</span>
-                        <input type="adress" />
+                        <input type="adress" name="adress" autocomplete="off"/>
                     </label>
-                    <button type="submit" class="submit">注 册</button>
+                    <button type="submit" class="submit" id="zhucebtn">注 册</button>
+                 <label>
+                    <span id="msginfo"></span>
+                </label>
                 </form>
             </div>
         </div>
     </div>
     <script src="/shopping/js/login.js"></script>
+    <script src="/commin.js"></script>
 </body>
 
 </html>

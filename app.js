@@ -25,6 +25,12 @@ const app = express();
 //告诉模板放在那个文件夹中 
 app.set('views', path.join(__dirname, 'views'));
 
+//处理post请求
+app.use(bodyparser.urlencoded({ extended: false }));
+
+//登录成功后保存用户信息 配置session
+app.use(session({ secret: 'secret key' }));
+
 //告诉默认模板后缀
 app.set('view engine', 'art');
 
@@ -38,10 +44,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 const shopping = require('./route/shopping');
 const admin = require('./route/admin');
 
+//进行登录拦截 查看是否已经登录 如果没有登录 则进不去页面
+app.use('/index', require('./middleware/middle'));
+app.use('/404', require('./middleware/middle'));
+app.use('/cart', require('./middleware/middle'));
+
+
 
 //拦截请求
 app.use('/', shopping);
 app.use('/admin', admin);
+
+
 
 //进行模块分离操作
 // //导入数据库文件 userinfo的模块
@@ -76,8 +90,7 @@ app.use('/admin', admin);
 // text();
 /*------------------------------------------------------------------------------------------------------- */
 
-//处理post请求
-app.use(bodyparser.urlencoded({ extended: false }));
+
 
 
 

@@ -28,7 +28,16 @@ const userinfo = {
             })
         })
     },
-    //根据email查询用户信息 返回一个布尔值 判断邮箱是否被注册
+    //根据邮箱查询用户信息 返回数据
+    selectByEmail: function (uemail) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM USERINFO WHERE EMAIL = "${uemail}"`, (err, result) => {
+                if (err) { rej('0'); }
+                res(result);
+            })
+        })
+    },
+    //根据email查询用户信息 判断邮箱是否被注册
     isOnlyEmail: function (uemail) {
         return new Promise((res, rej) => {
             db.query(`SELECT * FROM USERINFO WHERE EMAIL = "${uemail}"`, (err, result) => {
@@ -39,15 +48,13 @@ const userinfo = {
     },
     //注册用户email
     addUser: function (userObj) {
-        db.query(`INSERT INTO USERINFO VALUES ("${userObj.email}","${userObj.username}","${userObj.password}","${userObj.role}")`, (err, result) => {
-            if (err) { return 'user is exit'; }
-            else return 'suuccess';
-        }
-        );
-    }
+        return new Promise((res, rej) => {
+            db.query(`INSERT INTO USERINFO VALUES ("${userObj.email}","${userObj.username}","${userObj.password}","${userObj.role}","${userObj.address}")`, (err, result) => {
+                if (err) { return '0' }
+                return '1';
+            })
+        })
+    },
 }
-
 //导出userinfo模块
-module.exports = {
-    userinfo
-}
+module.exports = userinfo;
