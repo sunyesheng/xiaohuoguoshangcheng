@@ -4,3 +4,18 @@
 form {
     margin: 1% 40%;
 }
+
+/* 设置展示图片打大小和位置 */
+#goods tbody tr td img {
+    width: 100px;
+    height: 100px;
+    vertical-align: center;
+}
+#goods tbody tr td {
+    height: 100px;
+    line-height: 100px;
+}
+#descri {
+    width: 200px;
+    height: 50px;
+}

@@ -1,5 +1,6 @@
 //导入mysql模块
 const mysql = require('mysql');
+
 //建立与mysql连接
 const db = mysql.createPool({
     host: '127.0.0.1',
@@ -55,15 +56,19 @@ const userinfo = {
             })
         })
     },
+    //用来分页的功查询  每5条一分页
     selectByPage: function (pagenum) {
         return new Promise((res, rej) => {
             db.query(`SELECT * FROM USERINFO LIMIT ${pagenum * 5 - 4},${5}`, (err, result) => {
-                console.log(`SELECT * FROM USERINFO LIMIT ${pagenum * 5 - 4},${pagenum * 5}`);
+                //text
+                //console.log(`SELECT * FROM USERINFO LIMIT ${pagenum * 5 - 4},${pagenum * 5}`);
                 if (err) { rej(err) }
                 res(result);
             })
         })
     },
 }
+
+
 //导出userinfo模块
 module.exports = userinfo;

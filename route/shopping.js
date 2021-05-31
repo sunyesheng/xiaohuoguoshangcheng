@@ -14,6 +14,7 @@ shopping.post('/login', async (req, res) => {
     // console.log(req.body.email.trim().length);
     // console.log(req.body.password.trim().length);
 
+
     //对账号密码进行二次验证 如果账号或者密码为空 则返回对象
     if (req.body.email.trim().length == 0 || req.body.password.trim().length == 0) {
         return res.send({ status: 300 })

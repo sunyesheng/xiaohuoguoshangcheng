@@ -33,26 +33,33 @@
                 <thead>
                     <tr>
                         <th>商品名称</th>
+                        <th>商品图片</th>
                         <th>销量</th>
-                        <th>库存</th>
                         <th>价格</th>
-                        <th>修改</th>
+                        <th>商品简介</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>辣椒</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
+                        <td>大白菜</td>
+                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
+                        <td>58</td>
+                        <td>158</td>
+                        <td>不可修改</td>
                     </tr>
-                    <tr>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
-                        <td>火锅底料</td>
+                                        <tr>
+                        <td>大白菜</td>
+                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
+                        <td>58</td>
+                        <td>158</td>
+                        <td>不可修改</td>
+                    </tr>
+                                        <tr>
+                        <td>大白菜</td>
+                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
+                        <td>58</td>
+                        <td>158</td>
+                        <td>不可修改</td>
                     </tr>
                 </tbody>
             </table>
@@ -101,7 +108,7 @@
             <!-- /user -->
 
             <!-- addgood -->
-            <form action="" method="POST" class="form-horizontal" role="form" id="addgood">
+            <form action="" method="POST" class="form-horizontal" role="form" id="addgood" enctype="multipart/form-data"> 
                 <div class="form-group">
                     <legend>商品分类</legend>
                     <select name="goodstype" id="">
@@ -109,12 +116,12 @@
                         <option value="素菜">素菜</option>
                         <option value="荤菜">荤菜</option>
                         <option value="海鲜">海鲜</option>
-                        <option value="注释">主食</option>
+                        <option value="主食">主食</option>
                     </select>
-                    <legend>名称</input></legend><input type="text" name="name">
-                    <legend>商品图片</legend><input type="file" name="goodimg">
-                    <legend>库存</legend><input type="text" name="knum">
+                    <legend>名称</legend><input type="text" name="name">
                     <legend>价格</legend><input type="text" name="price">
+                    <legend>商品描述</legend><input type="text" name="descript" id="descri">
+                    <legend>商品图片</legend><input type="file" name="goodimg" id="goodfile">
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
