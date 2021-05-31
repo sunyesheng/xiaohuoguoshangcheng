@@ -5,7 +5,7 @@ const express = require('express');
 const shopping = express.Router();
 
 //导入模型sql模块
-const userInfo = require('../model/userinfo')
+const userInfo = require('../model/userinfo');
 
 //实现登录的功能 当点击登录后 进行的一系列过程
 //包括 数据比对 页面跳转 错误跳转404

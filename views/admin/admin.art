@@ -13,17 +13,17 @@
 </head>
 
 <body>
+
     <!-- nav -->
     <ul class="nav nav-pills navi">
-        <li role="presentation" id="goodsM"><a href="#">商品管理</a></li>
-        <li role="presentation" id="billM"><a href="#">订单管理</a></li>
-        <li role="presentation" id="userM"><a href="#">用户管理</a></li>
-        <li role="presentation" id="addM"><a href="#">新增商品</a></li>
+        <li role="presentation" id="goodsM"><a href="javascript:;">商品管理</a></li>
+        <li role="presentation" id="billM"><a href="javascript:;">订单管理</a></li>
+        <li role="presentation" id="userM"><a href="javascript:;">用户管理</a></li>
+        <li role="presentation" id="addM"><a href="javascript:;">新增商品</a></li>
     </ul>
     <!-- /nav -->
 
     <!-- main -->
-
     <div class="panel panel-default">
 
         <div class="panel-body">
@@ -83,13 +83,19 @@
                     <tr>
                         <th>用户名</th>
                         <th>邮箱</th>
-                        <th>注册时间</th>
+                        <th>地址</th>
+                        <th>用户权限</th>
                     </tr>
                 </thead>
                 <tbody>
+                {{each msg}}
                     <tr>
-                        <td></td>
+                        <td>{{$value.username}}</td>
+                        <td>{{$value.email}}</td>
+                        <td>{{$value.adress}}</td>
+                        <td>{{$value.role=='0'?'超级管理员':'普通用户'}}</td>
                     </tr>
+                {{/each}}
                 </tbody>
             </table>
             <!-- /user -->
@@ -120,11 +126,12 @@
 
 
             <!-- pages -->
-            <ul class="pager">
-                <li><a href="#">上一页</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">下一页</a></li>
+            <ul class="pager" id="pager">
+                <li><a href="javascript:;">上一页</a></li>
+                <% for(var i = 1;i<=pages;i++){%>
+                <li><a href="javascript:;">{{i}}</a></li>
+                <%}%>
+                <li><a href="javascript:;">下一页</a></li>
             </ul>
             <!-- /pages -->
         </div>

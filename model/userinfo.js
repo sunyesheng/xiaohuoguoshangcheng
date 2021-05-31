@@ -55,6 +55,15 @@ const userinfo = {
             })
         })
     },
+    selectByPage: function (pagenum) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM USERINFO LIMIT ${pagenum * 5 - 4},${5}`, (err, result) => {
+                console.log(`SELECT * FROM USERINFO LIMIT ${pagenum * 5 - 4},${pagenum * 5}`);
+                if (err) { rej(err) }
+                res(result);
+            })
+        })
+    },
 }
 //导出userinfo模块
 module.exports = userinfo;

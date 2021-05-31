@@ -35,6 +35,11 @@ $('#userM').on('click', function () {
     $('#bill').hide();
     $('#user').show();
     $(this).addClass('active');
+    //  当点击页码时候 将页码信息传递到服务器端
+    $('#pager').children('li').on('cilck', function () {
+        alert('12131231')
+    });
+
 });
 $('#addM').on('click', function () {
     $('#goodsM').removeClass('active');
@@ -42,9 +47,10 @@ $('#addM').on('click', function () {
     $('#billM').removeClass('active');
     $('#userM').removeClass('active');
     $('#bill').hide();
-    $('userM').hide();
+    $('#user').hide();
     $('#addgood').show();
     $(this).addClass('active');
+    alert('111')
 });
 
 //阻止表单的默认提交行为

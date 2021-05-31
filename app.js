@@ -29,7 +29,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyparser.urlencoded({ extended: false }));
 
 //登录成功后保存用户信息 配置session
-app.use(session({ secret: 'secret key' }));
+app.use(session({
+    resave: false, //添加 resave 选项
+    saveUninitialized: true, //添加 saveUninitialized 选项
+    secret: 'aF,.j)wBhq+E9n#aHHZ91Ba!VaoMfC', // 建议使用 128 个字符的随机字符串
+    cookie: { maxAge: 60 * 1000 }
+}));
 
 //告诉默认模板后缀
 app.set('view engine', 'art');
