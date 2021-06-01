@@ -34,33 +34,22 @@
                     <tr>
                         <th>商品名称</th>
                         <th>商品图片</th>
-                        <th>销量</th>
                         <th>价格</th>
+                        <th>商品种类</th>
                         <th>商品简介</th>
+                        <th>删除</th>
                     </tr>
                 </thead>
                 <tbody>
+                 {{each allgoodsinfo}}
                     <tr>
-                        <td>大白菜</td>
-                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
-                        <td>58</td>
-                        <td>158</td>
-                        <td>不可修改</td>
+                        <td>{{$value.goodsname}}</td>
+                        <td><img src="/upload/{{$value.goodimg}}"/></td>
+                        <td>{{$value.goodprice}}元</td>
+                        <td>{{$value.goodtype}}</td>
+                        <td>{{$value.description}}</td>
                     </tr>
-                                        <tr>
-                        <td>大白菜</td>
-                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
-                        <td>58</td>
-                        <td>158</td>
-                        <td>不可修改</td>
-                    </tr>
-                                        <tr>
-                        <td>大白菜</td>
-                        <td><img src="http://1812.img.pp.sohu.com.cn/images/blog/2009/11/18/18/8/125b6560a6ag214.jpg"/></td>
-                        <td>58</td>
-                        <td>158</td>
-                        <td>不可修改</td>
-                    </tr>
+                {{/each}}
                 </tbody>
             </table>
             <!-- /goods -->

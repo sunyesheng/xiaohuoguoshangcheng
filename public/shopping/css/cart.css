@@ -53,6 +53,7 @@ li {
   width: 100%;
 }
 .content {
+  margin-top: 60px  ;
   background: #fff;
   display: flex;
   padding: 40px 40px 0 40px;

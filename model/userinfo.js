@@ -51,8 +51,8 @@ const userinfo = {
     addUser: function (userObj) {
         return new Promise((res, rej) => {
             db.query(`INSERT INTO USERINFO VALUES ("${userObj.email}","${userObj.username}","${userObj.password}","${userObj.role}","${userObj.address}")`, (err, result) => {
-                if (err) { return '0' }
-                return '1';
+                if (err) { rej('insert userinfo wrong') }
+                res(result);;
             })
         })
     },

@@ -6,6 +6,7 @@ const shopping = express.Router();
 
 //导入模型sql模块
 const userInfo = require('../model/userinfo');
+const goodsinfo = require('../model/goodsinfo');
 
 //实现登录的功能 当点击登录后 进行的一系列过程
 //包括 数据比对 页面跳转 错误跳转404
@@ -36,6 +37,7 @@ shopping.post('/login', async (req, res) => {
         if (userObj[0].role == 0) {
             return res.send({ status: 203 });
         }
+
         //如果密码和数据库中的密码能对的上 则返回200 可以进行登录
         if (userObj[0].password && userObj[0].password == req.body.password.trim()) {
             //存储session信息 不用下次登录
@@ -81,10 +83,11 @@ shopping.post('/register', async (req, res) => {
         return res.send({ status: 201 });
     }
     //异步等待进行数据库插入 此处异步出现问题 需要两步发送状态码 以确认成功发送
+
     //完成全部后 需进行优化
     res.send({ status: 200 });
     await userInfo.addUser(userObj);
-    return res.send({ status: 200 });
+    return;
 })
 
 shopping.get('/', (req, res) => {
@@ -105,8 +108,13 @@ shopping.get('/index', (req, res) => {
 shopping.get('/404', (req, res) => {
     res.render('shopping/404');
 })
-shopping.get('/cart', (req, res) => {
-    res.render('shopping/cart');
+shopping.get('/cart', async (req, res) => {
+    //进行全部数据打渲染数据打渲染
+    const allgoodsinfo = await goodsinfo.goodsinfo.selectAllinfo();
+    res.render('shopping/cart', {
+        //所有打商品数据
+        allgoodsinfo: allgoodsinfo
+    });
 })
 
 

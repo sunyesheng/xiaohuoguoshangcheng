@@ -98,6 +98,13 @@ $('#btngood').on('click', () => {
                 if (res.status == 200) {
                     alert('成功添加商品');
                 }
+                else {
+                    //location.href = '/admin/404';
+                    alert('商品 名称重复')
+                }
+            },
+            error: function () {
+                location.url = '/404';
             }
         });
     }

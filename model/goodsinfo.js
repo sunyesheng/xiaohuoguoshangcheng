@@ -21,10 +21,10 @@ const goodsinfo = {
     },
     //用来向数据库中插入数据的方法
     insertGood: function (goodObj) {
-        return new Promise((rej, res) => {
+        return new Promise((res, rej) => {
             db.query(`INSERT INTO GOODSINFO VALUES ("${goodObj.goodsname}","${goodObj.goodprice}","${goodObj.goodimg}","${goodObj.goodtype}","${goodObj.description}")`, (err, result) => {
-                if (err) { return '0' }
-                return '1';
+                if (err) { rej('insert goodsinfo wrong') }
+                res(result);
             })
         })
     },
