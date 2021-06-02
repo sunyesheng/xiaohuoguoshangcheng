@@ -19,3 +19,9 @@ form {
     width: 200px;
     height: 50px;
 }
+
+/* 设置点击删除打按钮样式 */
+.gnamebtn {
+    height: 40%;
+    line-height: 40px;
+}

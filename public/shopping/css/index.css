@@ -32,7 +32,6 @@ menu ul li:hover {
 .main .yue {
     width: 1920px;
     height: 910px;
- 
     margin-bottom: 40px;
     text-align: center;
 }
@@ -160,4 +159,10 @@ menu ul li:hover {
 .main li:hover {
     cursor: pointer;
     border-bottom: 3px solid black;
+}
+
+/* 设置传输火锅中打图片 */
+.chuan .right ul li img {
+    margin: 0 auto;
+    width: 250px;
 }

@@ -17,11 +17,11 @@
                 <h2>欢迎回来</h2>
                 <label>
                     <span>邮箱</span>
-                    <input type="email" name="email" autocomplete="off"/>
+                    <input type="email" name="email" value="1481633100@qq.com" autocomplete="off"/>
                 </label>
                 <label>
                     <span>密码</span>
-                    <input type="password" name="password" autocomplete="off"/>
+                    <input type="password" value="123456" name="password" autocomplete="off"/>
                 </label>
                 <label>
                     <span id="wrongep"></span>

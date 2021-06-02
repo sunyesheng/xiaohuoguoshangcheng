@@ -13,6 +13,22 @@ const multer = require('multer');
 //创建路由
 const admin = express.Router();
 
+//根据用户发来打数据进行删除商品操作
+admin.get('/delgood', async (req, res) => {
+    //console.log(req.query.gname);
+    // res.send('hello sunyesheng');
+
+    //根据客户端传递过来打信息向数据库中请求删除信息
+    try {
+        const delres = await goodsinfo.goodsinfo.delGoodInfoByname(req.query.gname);
+        //告诉客户端删除成功
+        res.send({ status: 200 });
+    } catch (error) {
+        console.log(error);
+        res.send({ status: 201 });
+    }
+})
+
 //增加商品的表单提交 post
 admin.post('/addgoods', async (req, res) => {
     //text
@@ -93,6 +109,10 @@ admin.get('/', async (req, res) => {
     //获取全部打商品信息数据 并且渲染到页面中
     const allgoodsinfo = await goodsinfo.goodsinfo.selectAllinfo();
     //console.log(allgoodsinfo);
+
+    //测试根据种类查询功能是否好用
+    //const onetypeInfo = await goodsinfo.goodsinfo.selectInfoByType('火锅底料');
+    //测试结果 好用
 
     //获取全部数据 除以每页显示的数据 得到页码
     const allinfo = await userInfo.selectAllInfo();

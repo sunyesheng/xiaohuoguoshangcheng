@@ -40,8 +40,17 @@ shopping.post('/login', async (req, res) => {
 
         //如果密码和数据库中的密码能对的上 则返回200 可以进行登录
         if (userObj[0].password && userObj[0].password == req.body.password.trim()) {
+
             //存储session信息 不用下次登录
             req.session.email = req.body.email;
+            /**
+             * 将用户信息保存到session中
+             */
+            const userinfobyemail = await userInfo.isOnlyEmail(req.session.email);
+
+            //将用户信息保存到session中打uname属性
+            req.session.uname = userinfobyemail[0].username;
+            //console.log(req.session.uname);
             return res.send({ status: 200 });
         }
 
@@ -89,11 +98,11 @@ shopping.post('/register', async (req, res) => {
     await userInfo.addUser(userObj);
     return;
 })
-
+//渲染登录界面 首页打
 shopping.get('/', (req, res) => {
     res.render('shopping/login');
 })
-shopping.get('/index', (req, res) => {
+shopping.get('/index', async (req, res) => {
     //判断session中是否存储了 email信息 如果存储了改信息 则不用登录可以进入 若未存储 则需要登录进入
     //console.log(!!req.session.email);
     // if (!!req.session.email) {
@@ -102,18 +111,149 @@ shopping.get('/index', (req, res) => {
     // else {
     //     //res.render('shopping/login');
     //     res.redirect('/')
+    const allgoods = await goodsinfo.goodsinfo.selectAllinfo();
+    //console.log(allgoods);
+    //分类进行渲染
+    const onegoods = allgoods.slice(1, 4);
+    const twogoods = allgoods.slice(4, 7);
+    const threegoods = allgoods.slice(7, 10);
+    const forgoods = allgoods.slice(10, 13);
+    //console.log(onegoods);
     // }
-    res.render('shopping/index')
+    res.render('shopping/index', {
+        //将session中打uname渲染
+        myuinfo: req.session.uname,
+
+        //将3*4中商品进行渲染
+        onegoods: onegoods,
+        twogoods: twogoods,
+        threegoods: threegoods,
+        forgoods: forgoods,
+
+    })
 })
 shopping.get('/404', (req, res) => {
     res.render('shopping/404');
 })
+
+//查询框子
+shopping.get('/serch', async (req, res) => {
+
+    //进行判断 
+    if (!!req.query.keywords) {
+        //根据请求打关键字进行查询
+        const keygoods = await goodsinfo.goodsinfo.selectInfoByTypeMohu(req.query.keywords);
+        //相应
+        return res.render('shopping/cart/serch', {
+            allgoodsinfo: keygoods,
+            myuinfo: req.session.uname
+        })
+    }
+    if (!req.query.keygoods) {
+        return res.send({ status: 201 });
+    }
+
+
+    // console.log(req.query.keywords);
+    // //根据关键字进行查询
+    // const keygoods = await goodsinfo.goodsinfo.selectInfoByTypeMohu(req.query.keywords);
+    // //console.log(keygoods);
+    // //渲染模板
+
+    // if (!!keygoods) {
+    //     return res.render('shopping/cart/serch', {
+    //         allgoodsinfo: keygoods,
+    //         myuinfo: req.session.uname
+    //     })
+    // }
+    // return res.send({ status: 201 });
+})
+
+//分类渲染商品
+shopping.get('/diliao', async (req, res) => {
+
+    const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('火锅底料');
+    res.render('shopping/cart/diliao', {
+        allgoodsinfo: allgoodsinfo,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
+
+    });
+})
+
+
+//跳转到我的购物车页面
+shopping.get('/mycart', async (req, res) => {
+    const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
+    //console.log(allgoodsinfo);
+    res.render('shopping/mycart', {
+        allgoodsinfo: allgoodsinfo,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
+
+    });
+});
+
+
+
+shopping.get('/sucai', async (req, res) => {
+    const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
+    //console.log(allgoodsinfo);
+    res.render('shopping/cart/sucai', {
+        allgoodsinfo: allgoodsinfo,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
+
+    });
+})
+shopping.get('/huncai', async (req, res) => {
+
+    const huncaigood = await goodsinfo.goodsinfo.selectInfoByType('荤菜');
+    //console.log(huncaigood);
+    res.render('shopping/cart/huncai', {
+        allgoodsinfo: huncaigood,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
+
+    });
+})
+shopping.get('/zhushi', async (req, res) => {
+
+    const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('主食');
+    //console.log(allgoodsinfo);
+    res.render('shopping/cart/zhushi', {
+        allgoodsinfo: allgoodsinfo,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
+
+    });
+})
+
+//退出登录功能路由
+shopping.get('/loginout', (req, res) => {
+    //console.log(req.query.loginout);
+    //重新定向到登录界面 删除cookie
+    res.clearCookie('connect.sid');
+    //res.render('shopping/login');
+    //res.send('hell')
+    //res.send('/');
+    //向客户端发送 成功通知
+    res.send({ status: 200 });
+})
+
+//对于商品分类渲染打路由
 shopping.get('/cart', async (req, res) => {
     //进行全部数据打渲染数据打渲染
+    //console.log('====================================');
+    //console.log(req.session.uname);
+    //console.log('====================================');
+    //console.log(req.query);
     const allgoodsinfo = await goodsinfo.goodsinfo.selectAllinfo();
     res.render('shopping/cart', {
         //所有打商品数据
-        allgoodsinfo: allgoodsinfo
+        allgoodsinfo: allgoodsinfo,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname
     });
 })
 

@@ -49,7 +49,7 @@
                             <input type="text" placeholder="搜索" id="serchgood"><button>搜索商品</button>
                         </li>
                         <li id="tuijian">推荐</li>
-                        <li id="diliao">火锅底料</li>   
+                        <li id="diliao">火锅底料</li>
                         <li id="sucai">素菜</li>
                         <li id="huncai">荤菜</li>
                         <li id="zhushi">主食</li>

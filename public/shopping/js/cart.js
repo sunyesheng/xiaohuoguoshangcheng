@@ -36,31 +36,88 @@ var changeColor = function (a, b, c, d, e, f) {
 };
 $('#tuijian').on('click', function () {
     changeColor(a, b, c, d, e, f);
-    $('#incartbtn').css('display', 'block');
-    $('#delcartbtn').css('display', 'none');
+    // $('.incartbtn').css('display', 'block');
+    // $('.delcartbtn').css('display', 'none');
+    location.href = '/cart'
 });
 $('#diliao').on('click', function () {
     changeColor(b, a, c, d, e, f);
-    $('#incartbtn').css('display', 'block');
-    $('#delcartbtn').css('display', 'none');
+    // $('.incartbtn').css('display', 'block');
+    // $('.delcartbtn').css('display', 'none');
+    location.href = '/diliao'
 })
 $('#sucai').on('click', function () {
     changeColor(c, b, a, d, e, f);
-    $('#incartbtn').css('display', 'block');
-    $('#delcartbtn').css('display', 'none');
+    // $('.incartbtn').css('display', 'block');
+    // $('.delcartbtn').css('display', 'none');
+    location.href = '/sucai'
+
 })
 $('#huncai').on('click', function () {
     changeColor(d, b, c, a, e, f);
-    $('#incartbtn').css('display', 'block');
-    $('#delcartbtn').css('display', 'none');
+    // $('.incartbtn').css('display', 'block');
+    // $('.delcartbtn').css('display', 'none');
+    location.href = '/huncai'
 })
 $('#zhushi').on('click', function () {
     changeColor(e, b, c, d, a, f);
-    $('#incartbtn').css('display', 'block');
-    $('#delcartbtn').css('display', 'none');
+    // $('.incartbtn').css('display', 'block');
+    // $('.delcartbtn').css('display', 'none');
+    location.href = '/zhushi'
 })
 $('#dingdan').on('click', function () {
     changeColor(f, a, b, c, d, e);
-    $('#incartbtn').css('display', 'none');
-    $('#delcartbtn').css('display', 'block');
+    // $('.incartbtn').css('display', 'none');
+    // $('.delcartbtn').css('display', 'block');
+    location.href = '/mycart';
+
+});
+
+//当点击退出登录打时候 退出登录功能实现
+$('#loginout').on('click', () => {
+    //alert('0');
+    //向服务器发送请求 请求删除session 并重定向到登录界面
+    $.ajax({
+        type: "GET",
+        url: "/loginout",
+        data: {
+            loginout: '1'
+        },
+        success: function (res) {
+            //console.log(res);
+            if (res.status == 200) {
+                location.href = '/'
+            }
+        }
+    });
+})
+
+//搜索框设置 <input type="text" placeholder="搜索" id="serchgood">
+
+
+$('#serchgood').next().on('click', () => {
+    var keywords = document.getElementById('serchgood').value.trim();
+    //将搜索框中打内容进行 去除空格后发送给服务器
+
+    // console.log('====================================');
+    // console.log(keywords);
+    // console.log('====================================');
+
+    //发送ajax请求
+    $.ajax({
+        type: "GET",
+        url: "/serch",
+        data: {
+            keywords: keywords
+        },
+        success: function (res) {
+            if (res.status == 201) {
+                return console.log('hello');
+
+            }
+            // location.href = '/serch'
+            console.log('1212');
+        }
+    });
+
 })

@@ -57,26 +57,31 @@ $('#addgood').on('submit', () => {
 $('#btngood').on('click', () => {
 
     //找到file文件的组件
-    var goodfile = $('#goodfile')[0].files[0];
+    if (!$('#goodfile')[0].files[0]) {
+        return alert('请选择商品图片');
+    }
+    const goodfile = $('#goodfile')[0].files[0];
 
     //暂时替代方法 将文件名进行传输
     //console.log(goodfile.name);
 
     //获取表单中的文件
-    let formData = new FormData();
+    //let formData = new FormData();
 
     //formData.append("goodimg", goodfile);
 
     //获取表单数据
     const addGoodInfo = serializeToJson($('#addgood'));
-    console.log(addGoodInfo);
+    //console.log(addGoodInfo);
 
     //$.ajax({})
     //console.log(formData);
 
     //根据判断 必须所有选项均填写 则可以发送ajax请求
-    console.log(addGoodInfo.name.trim().length != 0 && addGoodInfo.price.trim().length != 0);
-    console.log(addGoodInfo);
+    //console.log(addGoodInfo.name.trim().length != 0 && addGoodInfo.price.trim().length != 0);
+    //console.log(addGoodInfo);
+    //if (!!goodfile.name) { console.log('abc'); }
+
     addGoodInfo.imgurl = goodfile.name;
 
     //对于价格进行判断 价格必须为整数否则提示错误
@@ -97,6 +102,9 @@ $('#btngood').on('click', () => {
             success: function (res) {
                 if (res.status == 200) {
                     alert('成功添加商品');
+                    //刷新页面
+                    location.href = '/admin';
+
                 }
                 else {
                     //location.href = '/admin/404';
@@ -112,6 +120,34 @@ $('#btngood').on('click', () => {
         alert('请输入完整信息')
     }
 });
+
+//当按钮被点击时候 删除掉某个商品
+$('.gnamebtn').on('click', (e) => {
+    //console.log(e);
+    const gname = $(e.target).attr('id');
+
+    //当点击该按钮时候 发送ajax请求 请求 服务器删除商品订单信息
+    $.ajax({
+        type: 'GET',
+        url: '/admin/delgood',
+        data: {
+            gname: gname
+        },
+        success: function (res) {
+            console.log(res);
+            if (res.status == 200) {
+                alert(gname + '成功删除')
+                location.href = '/admin';
+            }
+            if (res.status == 201) {
+                alert('商品删除失败，请刷新后重试')
+            }
+        }
+    })
+    // alert(gname + '   已经删除');
+    //console.log(gname);
+    //location.href = '/admin';
+})
 
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

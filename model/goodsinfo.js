@@ -23,7 +23,37 @@ const goodsinfo = {
     insertGood: function (goodObj) {
         return new Promise((res, rej) => {
             db.query(`INSERT INTO GOODSINFO VALUES ("${goodObj.goodsname}","${goodObj.goodprice}","${goodObj.goodimg}","${goodObj.goodtype}","${goodObj.description}")`, (err, result) => {
-                if (err) { rej('insert goodsinfo wrong') }
+                if (err) { rej('数据库：向商品数据库中插入数据错误') }
+                res(result);
+            })
+        })
+    },
+    //根据种类查询信息
+    selectInfoByType: function (goodtype) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM GOODSINFO WHERE GOODTYPE="${goodtype}"`, (err, result) => {
+                //console.log(`SELECT * FROM GOODSINFO WHERE GOODTYPE="${goodtype}"`);
+                if (err) { rej(err); }
+                res(result);
+            })
+        })
+    },
+    //根据姓名删除某个元素
+    delGoodInfoByname: function (goodname) {
+        return new Promise((res, rej) => {
+            db.query(`DELETE FROM GOODSINFO WHERE GOODSNAME="${goodname}"`, (err, result) => {
+                //console.log(`DELETE * FROM GOODSINFO WHERE GOODSNAME="${goodname}"`);
+                if (err) { rej('数据库：删除指定名称商品错误'); }
+                res(result);
+            })
+        })
+    },
+    //模糊搜索
+    //根据种类查询信息
+    selectInfoByTypeMohu: function (keyword) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM GOODSINFO WHERE GOODSNAME LIKE "%${keyword}%"`, (err, result) => {
+                if (err) { rej(err); }
                 res(result);
             })
         })

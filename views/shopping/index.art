@@ -9,9 +9,40 @@
     <link rel="shortcut icon" href="/shopping/img/huoguo.ico">
     <link rel="stylesheet" href="/shopping/css/初始化.css">
     <link rel="stylesheet" href="/shopping/css/index.css">
+    <link rel="stylesheet" href="/shopping/css/nav.css">
 </head>
 
 <body>
+    <div class="header">
+               <div class="fr nav">
+            <ul class="navbar_nav" data-in="fadeInDown" data-out="fadeOutUp">
+                <li class="active">
+                    <a href="/index">首页</a>
+                </li>
+                <li class="dropdown">
+                    <a href="/cart">
+                        商品分类
+                    </a>
+                    <div class="dropdown_menu">
+                        <a href="/diliao">火锅底料</a>
+                        <a href="/sucai">素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+                        <a href="/huncai">荤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+                        <a href="/zhushi">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">购物车</a>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" >你好,{{myuinfo == '刘猛' ? '猛少' : myuinfo}}</a>
+                        <div class="dropdown_menu">
+                            <a href="javascript:void(0)">个人信息</a>
+                            <a href="javascript:void(0)" id="loginout">退出登录</a>
+                        </div>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!-- header -->
     <header>
     </header>
@@ -61,9 +92,9 @@
                 <img src="/shopping/img/粤式火锅.png" alt="粤式火锅">
             </div>
             <ul>
-                <li><img src="/shopping/img/光鸡.jpg"></li>
-                <li></li>
-                <li></li>
+            {{each onegoods}}
+                <li><img src="/upload/{{$value.goodimg}}"/></li>
+            {{/each}}
             </ul>
         </div>
         <!-- /yueStyle -->
@@ -73,9 +104,9 @@
             <div class="left"></div>
             <div class="right">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            {{each twogoods}}
+                <li><img src="/upload/{{$value.goodimg}}"/></li>
+            {{/each}}
                 </ul>
                 <div class="lajiao">
                     <img src="/shopping/img/f2156851aecd5c559967611f8d241888.png">
@@ -89,9 +120,9 @@
             <div class="top"><img src="/shopping/img/12d8e547b73ad314d9d5268c4ed417b6.png" alt="韩式火锅"></div>
             <div class="bottom">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            {{each threegoods}}
+                <li><img src="/upload/{{$value.goodimg}}"/></li>
+            {{/each}}
                     <li><img src="/shopping/img/敬请期待.png" alt=""></li>
                 </ul>
             </div>
@@ -110,9 +141,9 @@
             </div>
             <div class="bottom">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            {{each forgoods}}
+                <li><img src="/upload/{{$value.goodimg}}"/></li>
+            {{/each}}
                 </ul>
             </div>
         </div>
