@@ -7,6 +7,7 @@ const shopping = express.Router();
 //导入模型sql模块
 const userInfo = require('../model/userinfo');
 const goodsinfo = require('../model/goodsinfo');
+const cartinfo = require('../model/cartinfo');
 
 //实现登录的功能 当点击登录后 进行的一系列过程
 //包括 数据比对 页面跳转 错误跳转404
@@ -51,6 +52,8 @@ shopping.post('/login', async (req, res) => {
             //将用户信息保存到session中打uname属性
             req.session.uname = userinfobyemail[0].username;
             //console.log(req.session.uname);
+            // const text = await cartinfo.selectAllInfo();
+            // console.log(text);
             return res.send({ status: 200 });
         }
 
@@ -143,14 +146,22 @@ shopping.get('/serch', async (req, res) => {
     if (!!req.query.keywords) {
         //根据请求打关键字进行查询
         const keygoods = await goodsinfo.goodsinfo.selectInfoByTypeMohu(req.query.keywords);
-        //相应
+        //如果输入打关键字为空 则进行错误页面打渲染
+        if (keygoods.length == 0) {
+            return res.render('shopping/cart/serch', {
+                errinfo: '未查询到商品信息',
+                //allgoodsinfo: keygoods,
+                myuinfo: req.session.uname
+            })
+        }
         return res.render('shopping/cart/serch', {
             allgoodsinfo: keygoods,
             myuinfo: req.session.uname
         })
     }
     if (!req.query.keygoods) {
-        return res.send({ status: 201 });
+        //如果输入的关键字为空 则渲染全部商品
+        res.render('shopping/404')
     }
 
 
@@ -173,19 +184,32 @@ shopping.get('/serch', async (req, res) => {
 shopping.get('/diliao', async (req, res) => {
 
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('火锅底料');
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    const mycartinfos = await cartinfo.selectAllInfo();
+    //对数组进行求和 得到总价格
+    var resprice = 0;
+    for (var i in mycartinfos) {
+        resprice = parseInt(resprice) + parseInt(mycartinfos[i].goodprice);
+    }
+    //console.log(resprice);
+    //console.log(cartinfo);
     res.render('shopping/cart/diliao', {
         allgoodsinfo: allgoodsinfo,
         //将用户信息传递到客户端
-        myuinfo: req.session.uname
+        myuinfo: req.session.uname,
+        mycartinfos: mycartinfos,
+        resprice: resprice
+        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     });
 })
 
 
-//跳转到我的购物车页面
+//跳转到我的购物车页面  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 shopping.get('/mycart', async (req, res) => {
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
-    //console.log(allgoodsinfo);
+    //console.log(allgoodsinfo); session中存储了email 和uname两个信息
+    //console.log(req.session.email);
     res.render('shopping/mycart', {
         allgoodsinfo: allgoodsinfo,
         //将用户信息传递到客户端

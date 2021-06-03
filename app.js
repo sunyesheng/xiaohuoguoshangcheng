@@ -33,7 +33,7 @@ app.use(session({
     resave: false, //添加 resave 选项
     saveUninitialized: true, //添加 saveUninitialized 选项
     secret: 'aF,.j)wBhq+E9n#aHHZ91Ba!VaoMfC', // 建议使用 128 个字符的随机字符串
-    cookie: { maxAge: 60 * 1000 }
+    cookie: { maxAge: 60 * 1000 * 60 } //60分钟后过期
 }));
 
 //告诉默认模板后缀

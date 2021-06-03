@@ -99,25 +99,34 @@ $('#serchgood').next().on('click', () => {
     var keywords = document.getElementById('serchgood').value.trim();
     //将搜索框中打内容进行 去除空格后发送给服务器
 
+    //进行页面跳转get氢气
+    //进行判断 如果为空 则提示输入内容
+    if (keywords.length != 0) {
+        location.href = `/serch/?keywords=${keywords}`;
+    }
+    else {
+        alert('请输入查询关键字')
+    }
+
     // console.log('====================================');
     // console.log(keywords);
     // console.log('====================================');
 
     //发送ajax请求
-    $.ajax({
-        type: "GET",
-        url: "/serch",
-        data: {
-            keywords: keywords
-        },
-        success: function (res) {
-            if (res.status == 201) {
-                return console.log('hello');
+    // $.ajax({
+    //     type: "GET",
+    //     url: "/serch/?keywords=154",
+    //     data: {
+    //         keywords: keywords
+    //     },
+    //     success: function (res) {
+    //         if (res.status == 201) {
+    //             return console.log('hello');
 
-            }
-            // location.href = '/serch'
-            console.log('1212');
-        }
-    });
+    //         }
+    //         // location.href = '/serch'
+    //         console.log('1212');
+    //     }
+    // });
 
 })

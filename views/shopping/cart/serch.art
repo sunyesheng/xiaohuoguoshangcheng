@@ -28,7 +28,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">购物车</a>
+                    <a href="javascript:void(0)">我的订单</a>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" >你好,{{myuinfo == '刘猛' ? '猛少' : myuinfo}}</a>
@@ -53,20 +53,14 @@
                         <li id="sucai">素菜</li>
                         <li id="huncai">荤菜</li>
                         <li id="zhushi">主食</li>
-                        <li id="dingdan">我的订单</li>
+                        <li id="dingdan">购物车</li>
                     </ul>
                 </li>
-                <div class="imimt">
-                    <li>名称：</li>
-                </div>
-                <div id="zongjine">总金额：</div>
-                <!-- payforit -->
-                <button id="paygoods">确认支付</button>
-                <!-- /payforit -->
             </ul>
         </div>
         <!-- right -->
         <div class="right">
+        <div>{{errinfo}}</div>
             <ul>
             {{each allgoodsinfo}}
                 <!-- goods -->
