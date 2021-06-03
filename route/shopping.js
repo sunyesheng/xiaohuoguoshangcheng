@@ -180,6 +180,32 @@ shopping.get('/serch', async (req, res) => {
     // return res.send({ status: 201 });
 })
 
+//商品详情页面路由
+shopping.get('/goodinfo', (req, res) => {
+    res.render('shopping/goodinfo', {
+        myuinfo: req.session.uname
+    })
+})
+
+
+//个人信息页面路由
+shopping.get('/myinfo', async (req, res) => {
+    //console.log(req.session.email);
+    const myinfos = await userInfo.selectByEmail(req.session.email);
+    //console.log(myinfos);
+    res.render('shopping/myinfo', {
+        myuinfo: req.session.uname,
+        myinfos: myinfos[0]
+    })
+})
+
+//个人订单路由
+shopping.get('/myorder', (req, res) => {
+    res.render('shopping/myorder', {
+        myuinfo: req.session.uname,
+    })
+})
+
 //分类渲染商品
 shopping.get('/diliao', async (req, res) => {
 

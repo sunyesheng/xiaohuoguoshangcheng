@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>欢迎来到火锅商城</title>
+    <link rel="stylesheet" href="/shopping/css/nav.css">
+    <link rel="stylesheet" href="/shopping/css/bootstrap.css">
+    <link rel="stylesheet" href="/shopping/css/myinfo.css">
+
+</head>
+
+<body>
+    <!-- nav -->
+    <header class="header">
+        <div class="fr nav">
+            <ul class="navbar_nav" data-in="fadeInDown" data-out="fadeOutUp">
+                <li class="active">
+                    <a href="/index">首页</a>
+                </li>
+                <li class="dropdown">
+                    <a href="/cart">
+                        商品分类
+                    </a>
+                    <div class="dropdown_menu">
+                        <a href="/diliao">火锅底料</a>
+                        <a href="/sucai">素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+                        <a href="/huncai">荤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+                        <a href="/zhushi">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="/myorder">我的订单</a>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">你好,{{myuinfo == '刘猛' ? '猛少' : myuinfo}}</a>
+                    <div class="dropdown_menu">
+                        <a href="/myinfo">个人信息</a>
+                        <a href="javascript:void(0)" id="loginout">退出登录</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 修改密码 -->
+
+    <div class="panel panel-default bss" id="myinfos">
+        <div class="panel-body">
+            {{myinfos.username}}的个人信息
+        </div>
+
+        <table class="table table-condensed table-hover mytable">
+            <thead>
+                <tr>
+                    <th>用户邮箱</th>
+                    <th>用户名称</th>
+                    <th>密码</th>
+                    <th>收货地址</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{myinfos.email}}</td>
+                    <td>
+
+                        <div class="input-group ssserch">
+                            <input type=" text" class="form-control" value="{{myinfos.username}}" id="namechange">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" id="namechangebtn">修改</button>
+                            </span>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="input-group ssserch">
+                            <input type=" text" class="form-control" value="{{myinfos.password}}" id="pwchange">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" id="pwchangebtn">修改</button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group ssserch">
+                            <input type=" text" class="form-control" value="{{myinfos.adress}}" id="adresschange">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" id="addresschangebtn">修改</button>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- /修改密码 -->
+    <script src="/shopping/js/jquery.js"></script>
+   <script src="/shopping/js/cart.js"></script>
+    
+    <script src="/shopping/js/myinfo.js"></script>
+
+</body>
+
+</html>

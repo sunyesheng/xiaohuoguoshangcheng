@@ -53,6 +53,10 @@ const admin = require('./route/admin');
 app.use('/index', require('./middleware/middle'));
 app.use('/404', require('./middleware/middle'));
 app.use('/cart', require('./middleware/middle'));
+app.use('/myinfo', require('./middleware/middle'));
+app.use('/myorder', require('./middleware/middle'));
+app.use('/goodinfo', require('./middleware/middle'));
+app.use('/allgoods', require('./middleware/middle'));
 
 
 

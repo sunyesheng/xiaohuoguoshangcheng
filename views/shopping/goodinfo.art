@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<title>商品详情页面</title>
+	<link rel="stylesheet" href="/shopping/css/evenZoom.css">
+	<link rel="stylesheet" href="/shopping/css/nav.css">
+</head>
+
+<body>
+	<!-- nav -->
+	<header class="header">
+		<div class="fr nav">
+			<ul class="navbar_nav" data-in="fadeInDown" data-out="fadeOutUp">
+				<li class="active">
+					<a href="/index">首页</a>
+				</li>
+				<li class="dropdown">
+					<a href="/cart">
+						商品分类
+					</a>
+					<div class="dropdown_menu">
+						<a href="/diliao">火锅底料</a>
+						<a href="/sucai">素&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+						<a href="/huncai">荤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜</a>
+						<a href="/zhushi">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食</a>
+					</div>
+				</li>
+				<li>
+					<a href="/myorder">我的订单</a>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:void(0)">你好,{{myuinfo == '刘猛' ? '猛少' : myuinfo}}</a>
+					<div class="dropdown_menu">
+						<a href="/myinfo">个人信息</a>
+						<a href="javascript:void(0)" id="loginout">退出登录</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="wrap">
+		<div class="dowebok" data-zoomed="/upload/18.jpg">
+			<img src="/upload/18.jpg">
+		</div>
+		<div class="goods">
+			<h1>鸭血</h1>
+			<h4>商品价格：155元</h4>
+			<h5>商品简介：这是老八秘制小汉堡</h5>
+			<button id="addbtn">添加到购物车</button>
+		</div>
+
+
+	</div>
+	<script src="/shopping/js/jquery-1.11.3.min.js"></script>
+	<script src="/shopping/js/evenZoom.js"></script>
+    <script src="/shopping/js/cart.js"></script>
+	<script>
+		$(function () {
+			$(".dowebok").evenZoom();
+		});
+	</script>
+</body>
+
+</html>

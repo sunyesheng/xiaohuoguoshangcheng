@@ -1,0 +1,66 @@
+.evenZoom {
+    display: inline-block;
+}
+
+.evenZoom .evenZoomLens {
+    background-color: #fff;
+    box-shadow: -5px -5px 30px rgba(255, 255, 255, .7) inset, 5px 5px 20px rgba(0, 0, 0, .3) inset, 10px 10px 25px rgba(0, 0, 0, .1);
+    width: 68px;
+    height: 68px;
+    border-radius: 100%;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
+
+    cursor: none;
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.evenZoom .evenZoomLens.hidden {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+.wrap {
+    margin-top: 150px;
+    margin-left: 400px;
+}
+* {
+    margin: 0;
+}
+.goods {
+    display: block;
+    float: left;
+}
+.dowebok {
+    float: left;
+}
+h1 {
+    padding: 50px 200px;
+}
+h4 {
+    padding: 20px 100px ;
+}
+h5 {
+    padding: 20px 100px ;
+}
+#addbtn {
+    margin: 100px;
+    padding: 20px 100px ;   
+}
+.wrap .dowebok img {
+    width: 600px;
+    height: 600px;
+}
+.wrap .dowebok {
+    width: 600px;
+    height: 600px;
+}
