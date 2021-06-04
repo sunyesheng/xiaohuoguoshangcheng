@@ -8,6 +8,7 @@ const shopping = express.Router();
 const userInfo = require('../model/userinfo');
 const goodsinfo = require('../model/goodsinfo');
 const cartinfo = require('../model/cartinfo');
+const orderinfo = require('../model/orderinfo');
 
 //实现登录的功能 当点击登录后 进行的一系列过程
 //包括 数据比对 页面跳转 错误跳转404
@@ -211,20 +212,20 @@ shopping.get('/diliao', async (req, res) => {
 
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('火锅底料');
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    const mycartinfos = await cartinfo.selectAllInfo();
+    //const mycartinfos = await cartinfo.selectAllInfo();
     //对数组进行求和 得到总价格
-    var resprice = 0;
-    for (var i in mycartinfos) {
-        resprice = parseInt(resprice) + parseInt(mycartinfos[i].goodprice);
-    }
+    //var resprice = 0;
+    //for (var i in mycartinfos) {
+    //    resprice = parseInt(resprice) + parseInt(mycartinfos[i].goodprice);
+    // }
     //console.log(resprice);
     //console.log(cartinfo);
     res.render('shopping/cart/diliao', {
         allgoodsinfo: allgoodsinfo,
         //将用户信息传递到客户端
         myuinfo: req.session.uname,
-        mycartinfos: mycartinfos,
-        resprice: resprice
+        //mycartinfos: mycartinfos,
+        //resprice: resprice
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     });
@@ -233,14 +234,46 @@ shopping.get('/diliao', async (req, res) => {
 
 //跳转到我的购物车页面  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 shopping.get('/mycart', async (req, res) => {
-    const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
+
+    //根据购物车的商品名称 查询商品的图片
+    //查询购物车中所有商品的名称
+    //构造一个新的对象数组
+    const foodname = await cartinfo.selectAllInfo();
+    //console.log(foodname);
+    //console.log(foodname[1]);
+    //foodname[1].apps = 'ss'
+    //const a = await goodsinfo.goodsinfo.selectOneGoodByname('三鲜')
+    //console.log(a.goodimg);
+    //循环遍历数组的每一项
+    for (var i = 0; i < foodname.length; i++) {
+        var goodinfo = await goodsinfo.goodsinfo.selectOneGoodByname(foodname[i].goodname);
+        foodname[i].goodimgs = goodinfo[0].goodimg;
+        foodname[i].goodDescripts = goodinfo[0].description;
+    }
+    //console.log(foodname);
+    //console.log(foodname);
+    //const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
+    //console.log(allgoodsinfo);
     //console.log(allgoodsinfo); session中存储了email 和uname两个信息
     //console.log(req.session.email);
-    res.render('shopping/mycart', {
-        allgoodsinfo: allgoodsinfo,
-        //将用户信息传递到客户端
-        myuinfo: req.session.uname
 
+    //根据session中邮箱信息查询购物车订单
+    const email = req.session.email;
+    const mycartinfos = await cartinfo.selectInfoByEmail(email);
+    //console.log(mycartinfos);
+    var resprice = 0;
+    for (var i in mycartinfos) {
+        resprice = parseInt(resprice) + parseInt(mycartinfos[i].goodprice);
+    }
+    //console.log(req.session.email);
+    res.render('shopping/mycart', {
+        allgoodsinfo: foodname,
+        //将用户信息传递到客户端
+        myuinfo: req.session.uname,
+
+        //购物车中打商品商品
+        mycartinfos: mycartinfos,
+        resprice: resprice
     });
 });
 
@@ -291,7 +324,44 @@ shopping.get('/loginout', (req, res) => {
     res.send({ status: 200 });
 })
 
-//对于商品分类渲染打路由
+//添加到购物车路由
+shopping.post('/addgoodmycart', (req, res) => {
+    //console.log(req.body);
+    //console.log(req.session.email);
+    if (req.body.goodname) {
+        const goodcartObj = {
+            uemail: req.session.email,
+            goodname: req.body.goodname,
+            goodprice: req.body.goodprice
+        }
+        cartinfo.insertOneGoodInfo(goodcartObj);
+        return res.send({
+            status: 200
+        });
+    }
+    return res.send({
+        status: 201
+    })
+})
+//购物车商品删除
+shopping.post('/delcatgood', (req, res) => {
+    //console.log(req.body);
+    //根据服务器端传递打数据进行删除操作
+    if (req.body.goodname) {
+        cartinfo.deleteGoodInfoByname(req.body.goodname);
+        return res.send({
+            status: 200
+        })
+
+    }
+    return res.send({
+        status: 201
+    })
+})
+
+
+
+//对于商品分类渲染的路由
 shopping.get('/cart', async (req, res) => {
     //进行全部数据打渲染数据打渲染
     //console.log('====================================');

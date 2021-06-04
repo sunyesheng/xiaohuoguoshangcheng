@@ -57,6 +57,7 @@ app.use('/myinfo', require('./middleware/middle'));
 app.use('/myorder', require('./middleware/middle'));
 app.use('/goodinfo', require('./middleware/middle'));
 app.use('/allgoods', require('./middleware/middle'));
+app.use('/mycart', require('./middleware/middle'));
 
 
 
@@ -98,9 +99,6 @@ app.use('/admin', admin);
 // }
 // text();
 /*------------------------------------------------------------------------------------------------------- */
-
-
-
 
 
 //

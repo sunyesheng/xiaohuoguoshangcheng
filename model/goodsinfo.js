@@ -49,7 +49,7 @@ const goodsinfo = {
         })
     },
     //模糊搜索
-    //根据种类查询信息
+    //根据关键字查询信息
     selectInfoByTypeMohu: function (keyword) {
         return new Promise((res, rej) => {
             db.query(`SELECT * FROM GOODSINFO WHERE GOODSNAME LIKE "%${keyword}%"`, (err, result) => {
@@ -58,6 +58,15 @@ const goodsinfo = {
             })
         })
     },
+    //精准搜索  根据商品名称进行搜索 商品的信息 主要是价格传递
+    selectOneGoodByname: function (gname) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM GOODSINFO WHERE GOODSNAME ="${gname}"`, (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            })
+        })
+    }
 }
 
 //导出userinfo模块

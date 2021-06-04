@@ -12,11 +12,20 @@ const db = mysql.createPool({
 const orderinfo = {
     //用来测试的方法
     selectByone: function () {
-        db.query('SELECT * from orderinfo', (err, result) => {
-            if (err) { return console.log(err.message); }
-            console.log(result);
-        });
-    }
+        return new Promise((res, rej) => {
+            db.query('SELECT * FROM ORDERINFO', (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            });
+        })
+    },
+    insertInfo: function (orderObj) {
+        db.query(`INSERT INTO ORDERINFO VALUES ("${orderObj.uemail}","${orderObj.goodname}","${orderObj.goodprice}","${orderObj.orderid}s")`, (err, result) => {
+            if (err) { rej(err); }
+            res(result);
+        })
+    },
+
 }
 
 //导出userinfo模块

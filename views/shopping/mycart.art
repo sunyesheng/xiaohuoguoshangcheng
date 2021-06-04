@@ -57,9 +57,11 @@
                     </ul>
                 </li>
                 <div class="imimt">
-                    <li>名称：</li>
+                    {{each mycartinfos}}
+                    <li>名称：{{$value.goodname}}&nbsp;&nbsp;&nbsp;价格：{{$value.goodprice}}</li>
+                    {{/each}}
                 </div>
-                <div id="zongjine">总金额：</div>
+                <div id="zongjine">总金额：{{resprice}}</div>
                 <!-- payforit -->
                 <button id="paygoods">确认支付</button>
                 <!-- /payforit -->
@@ -72,20 +74,20 @@
                 <!-- goods -->
                 <li id="goodsinfos" class="cccsss">
                     <div class="hd img-box">
-                        <img src="/upload/{{$value.goodimg}}"/>
+                        <img src="/upload/{{$value.goodimgs}}"/>
                     </div>
                     <div class="td">
                         <div>
-                            <h3>{{$value.goodsname}}</h3>
+                            <h3>{{$value.goodname}}</h3>
                         </div>
                         <div>
                             <span style="color: red;font-size: 16px;">{{$value.goodprice}}.00元</span>
                             <div>
-                                <button class="white-btn delcartbtn" style="width: 100px;">删除</button>
+                                <button class="white-btn delcartbtn" style="width: 100px;" id="{{$value.goodname}}">删除</button>
                             </div>
                         </div>
                     </div>
-                    <div id="xiangqingjieshao">商品详情：{{$value.description}}</div>
+                    <div id="xiangqingjieshao">商品详情：{{$value.goodDescripts}}</div>
                 </li>
                 <!-- /goods -->
                 {{/each}}

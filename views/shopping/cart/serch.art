@@ -75,7 +75,7 @@
                         <div>
                             <span style="color: red;font-size: 16px;">{{$value.goodprice}}.00元</span>
                             <div>
-                                <button class="white-btn incartbtn" style="width: 100px;">加入购物车</button>
+                                <button class="white-btn incartbtn" style="width: 100px;" id="{{$value.goodprice}}&{{$value.goodsname}}">加入购物车</button>
                             </div>
                         </div>
                     </div>
