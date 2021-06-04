@@ -68,18 +68,12 @@
 
                         <div class="input-group ssserch">
                             <input type=" text" class="form-control" value="{{myinfos.username}}" id="namechange">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" id="namechangebtn">修改</button>
-                            </span>
                         </div>
 
                     </td>
                     <td>
                         <div class="input-group ssserch">
                             <input type=" text" class="form-control" value="{{myinfos.password}}" id="pwchange">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" id="pwchangebtn">修改</button>
-                            </span>
                         </div>
                     </td>
                     <td>

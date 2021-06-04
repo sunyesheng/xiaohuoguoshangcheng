@@ -46,7 +46,14 @@ const cartinfo = {
                 res(result);
             })
         })
-
+    },
+    deleteAllMyCart: function (email) {
+        return new Promise((res, rej) => {
+            db.query(`DELETE FROM CARTINFO WHERE UEMAIL="${email}"`, (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            })
+        })
     }
 }
 //导出userinfo模块

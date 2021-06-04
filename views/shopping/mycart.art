@@ -61,7 +61,7 @@
                     <li>名称：{{$value.goodname}}&nbsp;&nbsp;&nbsp;价格：{{$value.goodprice}}</li>
                     {{/each}}
                 </div>
-                <div id="zongjine">总金额：{{resprice}}</div>
+                <div id="zongjine">总金额：{{resprice}}元</div>
                 <!-- payforit -->
                 <button id="paygoods">确认支付</button>
                 <!-- /payforit -->

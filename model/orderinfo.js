@@ -19,12 +19,24 @@ const orderinfo = {
             });
         })
     },
+    //插入订单的方法
     insertInfo: function (orderObj) {
-        db.query(`INSERT INTO ORDERINFO VALUES ("${orderObj.uemail}","${orderObj.goodname}","${orderObj.goodprice}","${orderObj.orderid}s")`, (err, result) => {
-            if (err) { rej(err); }
-            res(result);
+        return new Promise((res, rej) => {
+            db.query(`INSERT INTO ORDERINFO VALUES ("${orderObj.uemail}","${orderObj.goodname}","${orderObj.goodprice}","${orderObj.orderid}")`, (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            });
         })
     },
+    //根据邮箱查询
+    selectByemail: function (uemail) {
+        return new Promise((res, rej) => {
+            db.query(`SELECT * FROM ORDERINFO WHERE UEMAIL="${uemail}"`, (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            })
+        })
+    }
 
 }
 

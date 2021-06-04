@@ -7,6 +7,9 @@ const userInfo = require('../model/userinfo');
 //引入商品数据库模块
 const goodsinfo = require('../model/goodsinfo');
 
+//导入订单页面
+const orderinfo = require('../model/orderinfo');
+
 //引入文件处理模块
 const multer = require('multer');
 
@@ -125,9 +128,27 @@ admin.get('/', async (req, res) => {
     //text
     //return res.send(transform(req.url))
 
+    //查询所有的订单信息进行渲染
+    const allOrder = await orderinfo.orderinfo.selectByone();
+    //console.log(allOrder);
+
+    if (allOrder.length == 0) {
+        allOrder = [];
+
+    } else {
+        for (var i = 0; i < allOrder.length; i++) {
+            var myiinfos = await userInfo.selectByEmail(allOrder[i].uemail);
+            //console.log(myiinfos);
+            allOrder[i].uname = myiinfos[0].username;
+            allOrder[i].uaddress = myiinfos[0].adress;
+        }
+    }
+    //console.log(allOrder);
     //从商品数据库中查询所有打信息进行渲染
 
     res.render('admin/admin', {
+        //将顶点信息渲染
+        allOrder: allOrder,
         //查询所有打goodsinfo
         allgoodsinfo: allgoodsinfo,
         //查询到的信息
@@ -141,6 +162,7 @@ admin.get('/', async (req, res) => {
 admin.get('/404', (req, res) => {
     res.render('shopping/404')
 })
+
 
 //导出路由对象
 module.exports = admin;

@@ -67,6 +67,15 @@ const userinfo = {
             })
         })
     },
+    //更新密码地址姓名等信息
+    updataMyInfo: function (userObj) {
+        return new Promise((res, rej) => {
+            db.query(`UPDATE USERINFO SET USERNAME = "${userObj.username}" , PASSWORD = "${userObj.password}" , ADRESS = "${userObj.address}" WHERE EMAIL = "${userObj.email}"`, (err, result) => {
+                if (err) { rej(err); }
+                res(result);
+            })
+        })
+    }
 }
 
 

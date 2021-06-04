@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -46,8 +46,6 @@
     </header>
 
 
-
-
     <div class="super_container">
         <!-- Cart -->
         <div class="cart_container">
@@ -73,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+            {{each myorderinfo}}
                 <div class="row">
                     <div class="col">
                         <div class="cart_products">
@@ -80,18 +79,18 @@
                                 <li
                                     class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
                                     <!-- Product Image -->
-                                    <div class="cart_product_image"><img src="/upload/1.jpg"></div>
+                                    <div class="cart_product_image"><img src="/upload/{{$value.orderimg}}"></div>
                                     <!-- Product Name -->
-                                    <div class="cart_product_name"></a></div>
+                                    <div class="cart_product_name"></div>
                                     <div class="cart_product_info ml-auto">
                                         <div
                                             class="cart_product_info_inner d-flex flex-row align-items-center justify-content-md-end justify-content-start">
                                             <!-- Product Price -->
-                                            <div class="cart_product_price">$35.00</div>
+                                            <div class="cart_product_price">{{$value.goodprice}}.00元</div>
                                             <!-- Product Quantity -->
                                             <div class="product_quantity_container">
                                                 <div class=" clearfix">
-                                                    鸭血
+                                                    {{$value.goodname}}
                                                     <div class="quantity_buttons">
                                                         <div id="quantity_inc_button"
                                                             class="quantity_inc quantity_control"><i
@@ -103,7 +102,7 @@
                                                 </div>
                                             </div>
                                             <!-- Products Total Price -->
-                                            <div class="cart_product_total">2021.6.3 16:15</div>
+                                            <div class="cart_product_total">{{$value.orderid}}</div>
                                             <!-- Product Cart Trash Button -->
                                             <div class="cart_product_button">
                                                 <button class="cart_product_remove">
@@ -116,64 +115,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="cart_products">
-                            <ul>
-                                <li
-                                    class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
-                                    <!-- Product Image -->
-                                    <div class="cart_product_image"><img src="/upload/1.jpg"></div>
-                                    <!-- Product Name -->
-                                    <div class="cart_product_name"></a></div>
-                                    <div class="cart_product_info ml-auto">
-                                        <div
-                                            class="cart_product_info_inner d-flex flex-row align-items-center justify-content-md-end justify-content-start">
-                                            <!-- Product Price -->
-                                            <div class="cart_product_price">$35.00</div>
-                                            <!-- Product Quantity -->
-                                            <div class="product_quantity_container">
-                                                <div class=" clearfix">
-                                                    鸭血
-                                                    <div class="quantity_buttons">
-                                                        <div id="quantity_inc_button"
-                                                            class="quantity_inc quantity_control"><i
-                                                                class="fa fa-caret-up" aria-hidden="true"></i></div>
-                                                        <div id="quantity_dec_button"
-                                                            class="quantity_dec quantity_control"><i
-                                                                class="fa fa-caret-down" aria-hidden="true"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Products Total Price -->
-                                            <div class="cart_product_total">2021.6.3 16:15</div>
-                                            <!-- Product Cart Trash Button -->
-                                            <div class="cart_product_button">
-                                                <button class="cart_product_remove">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    {{/each}}
                 <div class="row">
                     <div class="col">
                         <div
                             class="cart_control_bar d-flex flex-md-row flex-column align-items-start justify-content-start">
-                            <button class="button_clear cart_button">收货地址：陕西科技大学</button>
-                            <button class="button_update cart_button">收货人：孙业盛</button>
+                            <button class="button_clear cart_button">收货地址：{{myadress}}</button>
+                            <button class="button_update cart_button">收货人：{{myuinfo}}</button>
                             <button class="button_update cart_button_2 ml-md-auto" id="changemyinfo">修改收货信息</button>
                         </div>
                     </div>
                 </div>
+
                 <div class="row cart_extra">
                 </div>
             </div>
         </div>
+
     </div>
+
+
     <script src="/shopping/js/jquery.js"></script>
     <script src="/shopping/js/cart.js"></script>
     <script src="/shopping/js/myorder.js"></script>

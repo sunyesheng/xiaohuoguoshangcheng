@@ -63,14 +63,23 @@
                         <th>邮箱</th>
                         <th>商品</th>
                         <th>下单时间</th>
-                        <th>总金额</th>
+                        <th>价格</th>
+                        <th>地址</th>
                     </tr>
                 </thead>
                 <tbody>
+                {{each allOrder}}
                     <tr>
-                        <td></td>
+                        <td>{{$value.uname}}</td>
+                        <td>{{$value.uemail}}</td>
+                        <td>{{$value.goodname}}</td>
+                        <td>{{$value.orderid}}</td>
+                        <td>{{$value.goodprice}}</td>
+                        <td>{{$value.uaddress}}</td>
                     </tr>
+                {{/each}}
                 </tbody>
+                
             </table>
             <!-- /bill -->
 

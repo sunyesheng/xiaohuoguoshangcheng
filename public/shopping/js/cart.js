@@ -136,7 +136,48 @@ $('#serchgood').next().on('click', () => {
 
 //当点击确认支付按钮 跳转弹出信息
 $('#paygoods').on('click', () => {
-    alert('点击成功');
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, //月份 
+            "d+": this.getDate(), //日 
+            "h+": this.getHours() % 12 == 0 ? 12 : this.getHours() % 12, //小时 
+            "H+": this.getHours(), //小时 
+            "m+": this.getMinutes(), //分 
+            "s+": this.getSeconds(), //秒 
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+            "S": this.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    var time = new Date().format("yyyy-MM-dd HH:mm:ss");
+    //发送post请求 告诉服务器 将购物车中订单转移到订单中
+    $.ajax({
+        type: "POST",
+        url: "/carttoorder",
+        data: {
+            time: time
+        },
+        //dataType: "dataType",
+        success: function (res) {
+            if (res.status == 200) {
+                alert('支付中.....支付成功');
+                location.href = '/mycart';
+                return;
+            }
+            if (res.status == 201) {
+                return alert('支付失败，请稍后重新支付')
+            }
+        }
+    });
+    //alert('支付中.....支付成功');
+    //location.href = '/mycart'
 })
 
 

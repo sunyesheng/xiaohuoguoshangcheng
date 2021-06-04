@@ -187,6 +187,21 @@ shopping.get('/goodinfo', (req, res) => {
         myuinfo: req.session.uname
     })
 })
+shopping.post('/changemyinfo', async (req, res) => {
+    //console.log(req.body);
+    const newuserObj = {
+        email: req.session.email,
+        username: req.body.newname,
+        password: req.body.newpw,
+        //此处默认所有的注册用户均不是管理员
+        role: "1",
+        address: req.body.newadress
+    }
+    await userInfo.updataMyInfo(newuserObj);
+    res.clearCookie('connect.sid');
+    res.send('hello')
+})
+
 
 
 //个人信息页面路由
@@ -201,9 +216,59 @@ shopping.get('/myinfo', async (req, res) => {
 })
 
 //个人订单路由
-shopping.get('/myorder', (req, res) => {
+shopping.get('/myorder', async (req, res) => {
+
+
+
+    //根据email查询地址
+    const myadress = await userInfo.selectByEmail(req.session.email)
+
+    const myorderallgood = await orderinfo.orderinfo.selectByemail(req.session.email);
+
+    if (myorderallgood.length == 0) {
+        return res.render('shopping/myorder', {
+            myuinfo: req.session.uname,
+            myorderinfo: '',
+            myadress: myadress[0].adress
+        })
+    }
+    //console.log(mdsd);
+    //根据从路由中查询打信息
+    for (var i = 0; i < myorderallgood.length; i++) {
+        var goodinorder = await goodsinfo.goodsinfo.selectInfoByTypeMohu(myorderallgood[i].goodname);
+        //console.log(goodinorder);
+        myorderallgood[i].orderimg = goodinorder[0].goodimg;
+    }
+    //console.log(myorderallgood);
     res.render('shopping/myorder', {
         myuinfo: req.session.uname,
+        myorderinfo: myorderallgood,
+        myadress: myadress[0].adress
+    })
+})
+
+//发送post请求 将购物车中的信息删除掉
+shopping.post('/carttoorder', async (req, res) => {
+    //console.log(req.body);
+    //将购物车中的信息转移到订单中
+    //从数据库中查询出购物车中所有的信息、
+    const mycarts = await cartinfo.selectInfoByEmail(req.session.email);
+    if (mycarts.length == 0) {
+        return res.send({
+            status: 201
+        })
+    }
+    //console.log(mycarts);
+    for (var i = 0; i < mycarts.length; i++) {
+        mycarts[i].orderid = req.body.time;
+        //向我的订单数据库中插入数据
+        orderinfo.orderinfo.insertInfo(mycarts[i]);
+    }
+    //console.log(mycarts);
+    //支付成功后 购物车的商品删除
+    cartinfo.deleteAllMyCart(req.session.email);
+    res.send({
+        status: 200
     })
 })
 
@@ -245,6 +310,16 @@ shopping.get('/mycart', async (req, res) => {
     //const a = await goodsinfo.goodsinfo.selectOneGoodByname('三鲜')
     //console.log(a.goodimg);
     //循环遍历数组的每一项
+    //如果购物车为空 则进行提示
+    if (foodname.length == 0) {
+        return res.render('shopping/mycart', {
+            myuinfo: req.session.uname,
+            resprice: '0',
+            mycartinfos: '',
+            allgoodsinfo: ''
+        })
+    }
+
     for (var i = 0; i < foodname.length; i++) {
         var goodinfo = await goodsinfo.goodsinfo.selectOneGoodByname(foodname[i].goodname);
         foodname[i].goodimgs = goodinfo[0].goodimg;
@@ -271,14 +346,14 @@ shopping.get('/mycart', async (req, res) => {
         //将用户信息传递到客户端
         myuinfo: req.session.uname,
 
-        //购物车中打商品商品
+        //购物车中的商品商品
         mycartinfos: mycartinfos,
         resprice: resprice
     });
 });
 
 
-
+//渲染素菜
 shopping.get('/sucai', async (req, res) => {
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
     //console.log(allgoodsinfo);
