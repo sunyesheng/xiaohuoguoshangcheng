@@ -10,8 +10,22 @@ const goodsinfo = require('../model/goodsinfo');
 const cartinfo = require('../model/cartinfo');
 const orderinfo = require('../model/orderinfo');
 
+//商品详情页面
+shopping.get('/goodinfo', async (req, res) => {
+    //console.log('001');
+    if (!!req.query.goodname) {
+        const goodinfo = await goodsinfo.goodsinfo.selectInfoByTypeMohu(req.query.goodname);
+        // console.log('====================================');
+        // console.log(goodinfo);
+        // console.log('====================================');
+        res.render('shopping/goodinfo', {
+            goodinfo: goodinfo[0]
+        })
+    }
+})
+
 //实现登录的功能 当点击登录后 进行的一系列过程
-//包括 数据比对 页面跳转 错误跳转404
+//包括 数据比对 页面跳转 错误跳转404  /shoping/login
 shopping.post('/login', async (req, res) => {
     //测试
     // console.log(req.body.email.trim().length);
@@ -106,6 +120,8 @@ shopping.post('/register', async (req, res) => {
 shopping.get('/', (req, res) => {
     res.render('shopping/login');
 })
+
+
 shopping.get('/index', async (req, res) => {
     //判断session中是否存储了 email信息 如果存储了改信息 则不用登录可以进入 若未存储 则需要登录进入
     //console.log(!!req.session.email);
@@ -136,11 +152,13 @@ shopping.get('/index', async (req, res) => {
 
     })
 })
+
+
 shopping.get('/404', (req, res) => {
     res.render('shopping/404');
 })
 
-//查询框子
+//查询框 模糊查询
 shopping.get('/serch', async (req, res) => {
 
     //进行判断 
@@ -187,6 +205,7 @@ shopping.get('/goodinfo', (req, res) => {
         myuinfo: req.session.uname
     })
 })
+
 shopping.post('/changemyinfo', async (req, res) => {
     //console.log(req.body);
     const newuserObj = {
@@ -272,7 +291,7 @@ shopping.post('/carttoorder', async (req, res) => {
     })
 })
 
-//分类渲染商品
+//分类渲染商品 樊子睿
 shopping.get('/diliao', async (req, res) => {
 
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('火锅底料');
@@ -296,7 +315,7 @@ shopping.get('/diliao', async (req, res) => {
     });
 })
 
-
+//高丝雨
 //跳转到我的购物车页面  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 shopping.get('/mycart', async (req, res) => {
 
@@ -353,7 +372,7 @@ shopping.get('/mycart', async (req, res) => {
 });
 
 
-//渲染素菜
+//渲染素菜 樊子睿
 shopping.get('/sucai', async (req, res) => {
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('素菜');
     //console.log(allgoodsinfo);
@@ -364,6 +383,7 @@ shopping.get('/sucai', async (req, res) => {
 
     });
 })
+//樊子睿
 shopping.get('/huncai', async (req, res) => {
 
     const huncaigood = await goodsinfo.goodsinfo.selectInfoByType('荤菜');
@@ -375,6 +395,7 @@ shopping.get('/huncai', async (req, res) => {
 
     });
 })
+//樊子睿
 shopping.get('/zhushi', async (req, res) => {
 
     const allgoodsinfo = await goodsinfo.goodsinfo.selectInfoByType('主食');
@@ -398,8 +419,8 @@ shopping.get('/loginout', (req, res) => {
     //向客户端发送 成功通知
     res.send({ status: 200 });
 })
-
-//添加到购物车路由
+//高丝雨
+//添加到购物车路由 req.body    req.query
 shopping.post('/addgoodmycart', (req, res) => {
     //console.log(req.body);
     //console.log(req.session.email);
@@ -418,7 +439,7 @@ shopping.post('/addgoodmycart', (req, res) => {
         status: 201
     })
 })
-//购物车商品删除
+//购物车商品删除  高丝雨
 shopping.post('/delcatgood', (req, res) => {
     //console.log(req.body);
     //根据服务器端传递打数据进行删除操作
@@ -436,7 +457,7 @@ shopping.post('/delcatgood', (req, res) => {
 
 
 
-//对于商品分类渲染的路由
+//对于商品分类渲染的路由 樊子睿
 shopping.get('/cart', async (req, res) => {
     //进行全部数据打渲染数据打渲染
     //console.log('====================================');
@@ -451,6 +472,8 @@ shopping.get('/cart', async (req, res) => {
         myuinfo: req.session.uname
     });
 })
+
+
 
 
 

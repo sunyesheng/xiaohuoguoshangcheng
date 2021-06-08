@@ -180,6 +180,12 @@ $('#paygoods').on('click', () => {
     //location.href = '/mycart'
 })
 
+//商品二级介绍页面
+$('.imgclick').on('click', (e) => {
+    var goodnameinfo = e.target.id.trim();
+    //console.log(this);
+    location.href = `/goodinfo/?goodname=${goodnameinfo}`
+})
 
 //当点击加入购物车按钮时候  获取当前商品打价格和名称
 $('.incartbtn').on('click', (e) => {

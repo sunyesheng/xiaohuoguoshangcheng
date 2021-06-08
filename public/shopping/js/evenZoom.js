@@ -12,36 +12,36 @@
  *
  */
 
-(function( $ ) {
+(function ($) {
     /*
      * Plugin initialization
      * @param settings Plugin options object
      */
-    $.fn.evenZoom = function( options ) {
-        var evenZoom = new EvenZoom( $( this ), options );
+    $.fn.evenZoom = function (options) {
+        var evenZoom = new EvenZoom($(this), options);
 
         // Events
-        $( this ).mouseenter(function() {
-            evenZoom.checkImageChanged( $( this ) );
+        $(this).mouseenter(function () {
+            evenZoom.checkImageChanged($(this));
             evenZoom.showLens();
-        } ).mousemove(function( e ) {
-            evenZoom.moveLens( e.pageX, e.pageY );
-        } ).mouseleave( function() {
+        }).mousemove(function (e) {
+            evenZoom.moveLens(e.pageX, e.pageY);
+        }).mouseleave(function () {
             evenZoom.hideLens();
-        } );
+        });
     };
 
     /*
      * evenZoom class
      */
-    function EvenZoom( $container, options ) {
+    function EvenZoom($container, options) {
         /**
          * Initialization method
          *
          * @param settings Plugin options object
          * @private
          */
-        this._init = function( settings ) {
+        this._init = function (settings) {
             if (typeof settings != "object") {
                 settings = {};
             }
@@ -51,18 +51,18 @@
                 lensPinningDistance: 20
             };
             // Override default settings
-            this.settings = $.extend( this.settings, settings );
+            this.settings = $.extend(this.settings, settings);
 
             // evenZoom image container definition and calculations
             this.$container = $container;
-            this.$container.addClass( "evenZoom" ).append( "<div class=\"evenZoomLens hidden\"></div>" );
+            this.$container.addClass("evenZoom").append("<div class=\"evenZoomLens hidden\"></div>");
 
             // Calculating image size
             this._calculateImagesSize();
 
             // Lens definition and calculations
-            this.$lens = $( ".evenZoomLens", this.$container );
-            this.$lens.css( "background-image", "url('" + this.zoomedImgSrc + "')" );
+            this.$lens = $(".evenZoomLens", this.$container);
+            this.$lens.css("background-image", "url('" + this.zoomedImgSrc + "')");
             this.lensWidth = this.$lens.width();
             this.lensHeight = this.$lens.height();
             this.lensWidthHalf = this.lensWidth / 2;
@@ -75,19 +75,19 @@
          * Calculates original image and zoomed image sizes
          * @private
          */
-        this._calculateImagesSize = function() {
-            this.imgSrc = this._findOriginalImg( this.$container );
-            this.zoomedImgSrc = this.$container.data( "zoomed" );
+        this._calculateImagesSize = function () {
+            this.imgSrc = this._findOriginalImg(this.$container);
+            this.zoomedImgSrc = this.$container.data("zoomed");
             if (this.zoomedImgSrc) {
                 var that = this;
-                $( "<img src='" + this.imgSrc + "'/>" ).load( function() {
+                $("<img src='" + this.imgSrc + "'/>").load(function () {
                     var imgWidth = this.width;
                     var imgHeight = this.height;
                     // Calculate container width and height
                     that.containterWidth = that.$container.width();
                     that.containterHeight = that.$container.height();
 
-                    $( "<img src='" + that.zoomedImgSrc + "'/>" ).load( function() {
+                    $("<img src='" + that.zoomedImgSrc + "'/>").load(function () {
                         if (this.width < imgWidth || this.height < imgHeight) {
                             that.zoomedImgSrc = that.imgSrc;
                             that.imgWidthRatio = 1;
@@ -97,11 +97,11 @@
                             that.imgWidthRatio = this.width / imgWidth;
                             that.imgHeightRatio = this.height / imgHeight;
                         }
-                    } );
-                } );
+                    });
+                });
             }
             else {
-                console.warn( "No zoomed img found, please set \"data-zoomed\" for evenZoom selector" );
+                console.warn("No zoomed img found, please set \"data-zoomed\" for evenZoom selector");
             }
         };
 
@@ -111,11 +111,11 @@
          * @returns {*}
          * @private
          */
-        this._findOriginalImg = function( $container ) {
-            if ($( "img", $container ).length) {
-                return $( "img:first", $container ).attr( "src" );
+        this._findOriginalImg = function ($container) {
+            if ($("img", $container).length) {
+                return $("img:first", $container).attr("src");
             }
-            console.warn( "No original img found, please set \"data-img\" for evenZoom selector" );
+            console.warn("No original img found, please set \"data-img\" for evenZoom selector");
             return false;
         };
 
@@ -123,41 +123,41 @@
          * Calculates lens image position
          * @private
          */
-        this.calculateBackgroundPosition = function() {
+        this.calculateBackgroundPosition = function () {
             var backgroundPosX = ((this.currentLensPositionX - this.$container.offset().left + this.lensWidthHalf) * this.imgWidthRatio) * (-1) + this.lensWidthHalf;
             var backgroundPosY = ((this.currentLensPositionY - this.$container.offset().top + this.lensHeightHalf) * this.imgHeightRatio) * (-1) + this.lensHeightHalf;
 
-            this.$lens.css( "background-position", backgroundPosX + "px " + backgroundPosY + "px" );
+            this.$lens.css("background-position", backgroundPosX + "px " + backgroundPosY + "px");
         };
 
 
         // Initialize evenZoom
-        this._init( options );
+        this._init(options);
     }
 
     /**
      * Shows lens
      */
-    EvenZoom.prototype.showLens = function() {
-        this.$lens.removeClass( "hidden" );
+    EvenZoom.prototype.showLens = function () {
+        this.$lens.removeClass("hidden");
     };
 
     /**
      * Hides lens
      */
-    EvenZoom.prototype.hideLens = function() {
-        this.$lens.addClass( "hidden" );
+    EvenZoom.prototype.hideLens = function () {
+        this.$lens.addClass("hidden");
     };
 
     /**
      * Checks if original image changed
      * @param $container evenZoom container
      */
-    EvenZoom.prototype.checkImageChanged = function( $container ) {
-        var newImgSrc = this._findOriginalImg( $container );
+    EvenZoom.prototype.checkImageChanged = function ($container) {
+        var newImgSrc = this._findOriginalImg($container);
         if (newImgSrc != this.imgSrc) {
             if (newImgSrc != false) {
-                this.reinitialize( $container );
+                this.reinitialize($container);
             }
             else {
                 this.hideLens();
@@ -169,12 +169,12 @@
      * Changes image in lens and recalculates sizes
      * @param $container
      */
-    EvenZoom.prototype.reinitialize = function( $container ) {
+    EvenZoom.prototype.reinitialize = function ($container) {
         this.$container = $container;
         this.containterWidth = this.$container.width();
         this.containterHeight = this.$container.height();
         this._calculateImagesSize();
-        this.$lens.css( "background-image", "url('" + this.zoomedImgSrc + "')" );
+        this.$lens.css("background-image", "url('" + this.zoomedImgSrc + "')");
     };
 
     /**
@@ -182,7 +182,7 @@
      * @param newPosX Position on x axis
      * @param newPosY Position on y axis
      */
-    EvenZoom.prototype.moveLens = function( newPosX, newPosY ) {
+    EvenZoom.prototype.moveLens = function (newPosX, newPosY) {
         var lensPosX = newPosX - this.lensWidthHalf;
         var lensPosY = newPosY - this.lensHeightHalf;
 
@@ -228,10 +228,10 @@
         }
 
         // Set new lens position
-        this.$lens.offset( {
+        this.$lens.offset({
             left: lensPosX,
             top: lensPosY
-        } );
+        });
 
         this.currentLensPositionX = lensPosX;
         this.currentLensPositionY = lensPosY;
@@ -239,4 +239,24 @@
         // Calculate lens image position
         this.calculateBackgroundPosition();
     };
-}( jQuery ));
+}(jQuery));
+$('.addbtn').on('click', (e) => {
+    //alert('0')
+    var s = e.target.id.split('&');
+    $.ajax({
+        type: "POST",
+        url: "/addgoodmycart",
+        data: {
+            goodname: s[1],
+            goodprice: s[0]
+        },
+        //dataType: "dataType",
+        success: function (res) {
+            if (res.status == 200) {
+                alert('加入购物车成功');
+                return location.href = '/cart'
+            }
+            alert('加入购物车失败');
+        }
+    });
+})

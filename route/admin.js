@@ -15,7 +15,7 @@ const multer = require('multer');
 
 //创建路由
 const admin = express.Router();
-
+//樊子睿
 //根据用户发来打数据进行删除商品操作
 admin.get('/delgood', async (req, res) => {
     //console.log(req.query.gname);
@@ -27,7 +27,7 @@ admin.get('/delgood', async (req, res) => {
         //告诉客户端删除成功
         res.send({ status: 200 });
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.send({ status: 201 });
     }
 })
@@ -128,6 +128,9 @@ admin.get('/', async (req, res) => {
     //text
     //return res.send(transform(req.url))
 
+
+
+    //樊子睿
     //查询所有的订单信息进行渲染
     const allOrder = await orderinfo.orderinfo.selectByone();
     //console.log(allOrder);

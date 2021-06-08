@@ -64,8 +64,8 @@
             {{each allgoodsinfo}}
                 <!-- goods -->
                 <li id="goodsinfos" class="cccsss">
-                    <div class="hd img-box">
-                        <img src="/upload/{{$value.goodimg}}"/>
+                    <div class="hd img-box imgclick" id="{{$value.goodsname}}">
+                        <img src="/upload/{{$value.goodimg}}" id="{{$value.goodsname}}"/>
                     </div>
                     <div class="td">
                         <div>
