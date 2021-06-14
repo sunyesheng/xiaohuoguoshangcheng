@@ -237,8 +237,6 @@ shopping.get('/myinfo', async (req, res) => {
 //个人订单路由
 shopping.get('/myorder', async (req, res) => {
 
-
-
     //根据email查询地址
     const myadress = await userInfo.selectByEmail(req.session.email)
 

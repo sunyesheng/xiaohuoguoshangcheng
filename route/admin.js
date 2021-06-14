@@ -16,7 +16,7 @@ const multer = require('multer');
 //创建路由
 const admin = express.Router();
 //樊子睿
-//根据用户发来打数据进行删除商品操作
+//根据用户发来打数据进行删除商品操作    
 admin.get('/delgood', async (req, res) => {
     //console.log(req.query.gname);
     // res.send('hello sunyesheng');
@@ -25,7 +25,7 @@ admin.get('/delgood', async (req, res) => {
     try {
         const delres = await goodsinfo.goodsinfo.delGoodInfoByname(req.query.gname);
         //告诉客户端删除成功
-        res.send({ status: 200 });
+        res.send({ status: 201 });
     } catch (error) {
         //console.log(error);
         res.send({ status: 201 });
@@ -37,7 +37,7 @@ admin.post('/addgoods', async (req, res) => {
     //text
     //console.log(req.body.name);
     //res.send('hello world');
-    //console.log(res.body);
+    console.log(res.body);
 
     //构造一个对象 将req返回的数据进行包装后 插入到数据库
     const goodObj = {
